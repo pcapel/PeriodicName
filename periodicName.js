@@ -122,12 +122,17 @@ var controls = {
 	//I can probably write this function to do that
 	//******************************************************Do this*******************************************************
 	legitimateFill : function(array, array2) {
-
+		//
+	},
+	//I think I want to have it take an array and the level you want data returned from
+	//example [[1,1],1,[1,1],1,[1],1,[1],[1,1,1],1] passed in with level 1 would pull out
+	//the ones [[1,1],[1,1],[1],[1],[1,1,1]] and return them in an array 
+	pullFromNested : function(array, level) {
+		//some sort of loop that iterates based on the level input
 	},
 	//object containing methods relevant to this subset of functionality
 	canSpell : {
 		//*********************************These functions are NOT DRY, but I wanted to get them working before I pulled out the functionality that they share*************************************
-
 		//pass in model.name.possible and pull out arrays that have .length == 2 and a string to match to
 		//checks to see if the input can be spelled with only single letter elements
 		//ie if the sequence of single matches is both sequential (with respect to the string input) and the right length according to input string
@@ -227,20 +232,34 @@ var view = {
 	},
 	grabName : function() {
 		var name = $("#userName");
+		if (name.value == undefined) {
+			;
+		}
 		this.userInput = name.value.toLowerCase();
+	},
+	updateWith : {
+		notName : function() {
+
+		},
+		notPossible : function() {
+
+		},
+		spelledOptions : function() {
+
+		}
 	},
 	eval : function() {
 		$("#generate").on('click', function() {
 			view.grabName(); //grab the name each time in case it changes
-			var singles = controls.singlizeName(view.userInput); 
-			var doubles = controls.doublizeName(view.userInput);
-			var matches = controls.compareToTable(singles, doubles);
-			console.log("Matches  ", matches);
-			var possible = controls.arePossible(matches);
-			console.log("Test of withSingles   ",controls.canSpell.withSingles(possible, view.userInput));
-			console.log("Test of withDoubles   ",controls.canSpell.withDoubles(possible, view.userInput));
-			console.log("Test of mixedVariant   ",controls.canSpell.mixedVariant(possible, view.userInput));
-			controls.clearHolders();
+				var singles = controls.singlizeName(view.userInput); 
+				var doubles = controls.doublizeName(view.userInput);
+				var matches = controls.compareToTable(singles, doubles);
+				console.log("Matches  ", matches);
+				var possible = controls.arePossible(matches);
+				console.log("Test of withSingles   ",controls.canSpell.withSingles(possible, view.userInput));
+				console.log("Test of withDoubles   ",controls.canSpell.withDoubles(possible, view.userInput));
+				console.log("Test of mixedVariant   ",controls.canSpell.mixedVariant(possible, view.userInput));
+				controls.clearHolders();
 		});
 	}
 
