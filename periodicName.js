@@ -221,12 +221,12 @@ var controls = {
 };
 var view = {
 	init : function() {
-		this.output = document.getElementById("output");
-		this.genName = document.getElementById("generatedName");
+		this.output = $("#output");
+		this.genName = $("#generatedName");
 		this.eval();
 	},
 	grabName : function() {
-		var name = document.getElementById("userName");
+		var name = $("#userName");
 		this.userInput = name.value.toLowerCase();
 	},
 	eval : function() {
