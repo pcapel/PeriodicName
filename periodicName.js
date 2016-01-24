@@ -114,7 +114,7 @@ var controls = {
 	},
 	//as in the verb legitimate not the noun.
 	//checks to see if the possible fill will break the proper spelling by creating a gap
-	//example NaCaCu could also be NAcAcU...oh shit.  This isn't addressed by my program at all...
+	//example NaCaCu could also be NAcAcU...oh *(&^.  This isn't addressed by my program at all...
 	legitimateFill : function(array, array2) {
 
 	},
@@ -348,7 +348,7 @@ controls.init();
 // 	} else if (possibleSing[0] == -1) {
 // 		document.getElementById("output").innerHTML = "You've entered a sequence of letters that literally doesn't have any elemental symbols in it!  Go you!";
 // 	} else {
-// 		document.getElementById("output").innerHTML = "How the fucking hell did you get this message you prick?!";
+// 		document.getElementById("output").innerHTML = "How the *^&(&*^) (*&) did you get this message you *I^%((?!";
 // 	}
 // 	if (outDoub.length > 0) {
 // 		outDoub = outDoub.reduce(function(a,b){return a.concat(b)});
