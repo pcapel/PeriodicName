@@ -1,4 +1,4 @@
-//massive refactor for separation of concerns
+//cleaner vs of application
 var model = {
 	periodicTable : ["h", "he", 
 					 "li", "be", "b", "c", "n", "o", "f", "ne", 
@@ -8,11 +8,10 @@ var model = {
 					 "cs", "ba", "la", "ce", "pr", "nd", "pm", "sm", "eu", "gd", "tb", "dy", "ho", "er", "tm", "yb", "lu", "hf", "ta", "w", "re", "os", "ir", "pt", "au", "hg", "ti", "pb", "bi", "po", "at", "rn",
 					 "fr", "ra", "ac", "th", "pa", "u", "np", "pu", "am", "cm", "bk", "cf", "es", "fm", "md", "no", "lr", "rf", "db", "sg", "bh", "hs", "mt", "ds", "rg", "cn", "uut", "fl", "uup", "lv", "uus", "uuo"
 					],
-	//name obect would hold all name info
 	name : {
-		//singles array would hold arrays with [x][0] being the original character position,
-		//then [x][1] would be the matched index in the periodicTable
-		//example philip would be [[0,14],[1,0],[2,52]] etc
+		//singles array holds arrays with [x][0] being the original character position,
+		//[x][1] is the matched index in the periodicTable
+		//example p, h, i, l, i, p would be [[0,14],[1,0],[2,52]] etc
 		singles : [],
 		//same logic as above would apply, only the array would contain the index of both letters the double could represent
 		//eg [[0,1,-1][1,2,-1][2,3,-1][3,4,2]] would be the same as ph, hi, il, li with [x][2] telling if there's a match
@@ -22,12 +21,12 @@ var model = {
 		possible : []
 	}
 };
-//controls should be a loooot of what my functions are
 var controls = {
 	init : function() {
 		view.init();
 	},
-	//takes a string and returns an array containing arrays of [string index, string] pairs
+	//takes a string and returns an array containing arrays of [string_index, string] pairs
+	//example Philip becomes [[0, p], [1, h], [2, i], [3, l], [4, i], [5, p]]
 	singlizeName : function(name) {
 		for (var i = 0; i < name.length; i++) {
 			model.name.singles.push([i, name.slice(i, i + 1)]);
@@ -43,7 +42,8 @@ var controls = {
 		}
 		return model.name.doubles;
 	},
-	//compares array1 to periodic table and pushes the index of matched items into array2
+	//compares the model.name.singles/doubles to periodic table and pushes the index of matched items into an object
+	//returns this object to be passed to another function
 	compareToTable : function(arrayOfSingles, arrayOfDoubles) {
 		var matches = {
 			singles : [],
@@ -65,6 +65,8 @@ var controls = {
 		// }
 		return matches;
 	},
+	//takes in the object returned from compareToTable above
+	//returns an array from the model that has only those sub-arrays where compare to table returned greater than 0
 	arePossible : function(obj){
 		var singles = obj.singles;
 		var doubles = obj.doubles;
@@ -83,6 +85,8 @@ var controls = {
 	},
 	//takes an array and searches it from index 0 and returns an array containg the holes it finds between values
 	//example array passed [1, 2, 4, 5] tracker outputs [3], if input is [3,4,6] with a string.length of 7 output is [0, 1, 2, 5] :3
+	//does run into issue when the hole is larger than a single position
+	//******************************needs revision*****************************
 	findHoles : function(array, string) {
 		var tracker = [];
 		if (array.length == string.length) {
@@ -115,12 +119,12 @@ var controls = {
 	//as in the verb legitimate not the noun.
 	//checks to see if the possible fill will break the proper spelling by creating a gap
 	//example NaCaCu could also be NAcAcU...oh *(&^.  This isn't addressed by my program at all...
+	//I can probably write this function to do that
+	//******************************************************Do this*******************************************************
 	legitimateFill : function(array, array2) {
 
 	},
-	//takes the possible array from model and returns a bool for spelling
-	//in progress
-	//consider making it's own object containg methods withSingles, withDoubles, mixedVariant
+	//object containing methods relevant to this subset of functionality
 	canSpell : {
 		//*********************************These functions are NOT DRY, but I wanted to get them working before I pulled out the functionality that they share*************************************
 
@@ -129,11 +133,14 @@ var controls = {
 		//ie if the sequence of single matches is both sequential (with respect to the string input) and the right length according to input string
 		withSingles : function(array, string) {
 			var holder = [];
+			//this can probably be abstracted to it's own function
+			//tentatively called *pullFromNested
 			for (var i = 0; i < array.length; i++) {
 				if (array[i].length == 2 && typeof array[i][0] == "number") {
 					holder.push(array[i][0]);
 				}
 			}
+			//*
 			if (holder[0] > 0) {
 				return false;
 			}
@@ -149,15 +156,21 @@ var controls = {
 		withDoubles : function(array, string) {
 			var holder = []; 
 			var metaHolder = [];
+			//here's that same sort of logic for *pullFromNested
+			//it might take passing the level you want to pull from or something similar
 			for (var i = 0; i < array.length; i++) {
 				if (array[i].length == 2 && typeof array[i][0] == "object") {
 					holder.push(array[i][0]);
 				}
 			}
+			//*
+			//this can DEFINITELY become its own method
+			//call it *flattenFilter or something
 			holder = Array.prototype.concat.apply([], holder);
 			holder = holder.filter(function(item, pos, ary) {
          		return !pos || item != ary[pos - 1];
      		});
+     		//*
 			if(holder.length == string.length){
 				return true;
 			} else {
@@ -168,6 +181,8 @@ var controls = {
 			var holderSingle = [];
 			var holderDouble = [];
 			var holes;
+			//look familiar?
+			//* pullFromNested
 			for (var i = 0; i < array.length; i++) {
 				if (array[i].length == 2 && typeof array[i][0] == "number") {
 					holderSingle.push(array[i][0]);
@@ -178,6 +193,7 @@ var controls = {
 					holderDouble.push(array[j][0]);
 				}
 			}
+			//*
 			//look through holder single for the spots that it needs something to fill in
 			holes = controls.findHoles(holderSingle, string);
 			//check to see if any of the doubles match up to holes
@@ -187,6 +203,7 @@ var controls = {
 		}
 	},
 	//gets the symbols that are possible for spelling the name
+	//still will need something similar, but I don't know what this is doing right now
 	grabSymbols : function(array) {
 		var matches = model.possibleMatches;
 		var table = model.periodicTable;
@@ -202,7 +219,6 @@ var controls = {
 		model.name.possible = [];
 	}
 };
-//so, the view will be super simple.
 var view = {
 	init : function() {
 		this.output = document.getElementById("output");
@@ -215,10 +231,11 @@ var view = {
 	},
 	eval : function() {
 		$("#generate").on('click', function() {
-			view.grabName();
-			var singles = controls.singlizeName(view.userInput);
+			view.grabName(); //grab the name each time in case it changes
+			var singles = controls.singlizeName(view.userInput); 
 			var doubles = controls.doublizeName(view.userInput);
 			var matches = controls.compareToTable(singles, doubles);
+			console.log("Matches  ", matches);
 			var possible = controls.arePossible(matches);
 			console.log("Test of withSingles   ",controls.canSpell.withSingles(possible, view.userInput));
 			console.log("Test of withDoubles   ",controls.canSpell.withDoubles(possible, view.userInput));
