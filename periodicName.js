@@ -1,12 +1,12 @@
 //cleaner ver of application
 // periodicTable : {
-// 	h : {
-// 		name : "Hydrogen",
-// 		atomicWeight : 1.008,
-// 		atomicNumber : 1,
-// 		electronConfig : "1s1"
-// 	}
-// }
+// 			   h : {
+//				symbol : "H"
+//		 		name : "Hydrogen",
+// 				atomicWeight : 1.008,
+// 				atomicNumber : 1
+// 			}
+//	 }
 var Counter = function(set) {
 	this.count = set;
 };
@@ -78,14 +78,6 @@ var controls = {
 			matches.doubles.push(indexTracker, indexTracker + 1, model.periodicTable.indexOf(arrayOfDoubles[j]));
 			indexTracker++;
 		}
-		//**************I want to remember this logic, but it isn't useful with my new method***************
-		// //neat logic here because the array.length property is being modified
-		// //remember that the for loop needs the ";" after the final argument to be valid
-		// for (var k = matches.length; k--;) {
-		// 	if (matches[k] < 0) {
-		// 		matches.splice(k, 1);
-		// 	}
-		// }
 		return matches;
 	},
 	//takes in the object returned from compareToTable above
@@ -179,13 +171,13 @@ var view = {
 	},
 	updateWith : {
 		notName : function() {
-
+			view.output.innerHTML = "This is not a valid name!"
 		},
 		notPossible : function() {
-
+			view.output.innerHTML = "Sorry, your name cannot be spelled. :("
 		},
 		spelledOptions : function() {
-
+			//view.output.innerHTML = 
 		}
 	},
 	eval : function() {
@@ -350,8 +342,3 @@ controls.init();
 //     	indicesOfPossible.push(elemArray.indexOf(possibleConcat[zzz]));
 //     }
 // };
-
-
-//things that I would like to implement eventually:
-//1: Actually getting the spelling to work.
-//2: ajax call after the check for possibility to pull the required images for the spell
