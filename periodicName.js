@@ -1,4 +1,4 @@
-//cleaner vs of application
+//cleaner ver of application
 var model = {
 	periodicTable : ["h", "he", 
 					 "li", "be", "b", "c", "n", "o", "f", "ne", 
@@ -226,15 +226,12 @@ var controls = {
 };
 var view = {
 	init : function() {
-		this.output = $("#output");
-		this.genName = $("#generatedName");
+		this.output = $("#output")[0];
+		this.genName = $("#generatedName")[0];
 		this.eval();
 	},
 	grabName : function() {
-		var name = $("#userName");
-		if (name.value == undefined) {
-			;
-		}
+		var name = $("#userName")[0];
 		this.userInput = name.value.toLowerCase();
 	},
 	updateWith : {
