@@ -17,16 +17,12 @@ var model = {
 					 "fr", "ra", "ac", "th", "pa", "u", "np", "pu", "am", "cm", "bk", "cf", "es", "fm", "md", "no", "lr", "rf", "db", "sg", "bh", "hs", "mt", "ds", "rg", "cn", "uut", "fl", "uup", "lv", "uus", "uuo"
 					],
 	name : {
-		//singles array holds arrays with [x][0] being the original character position,
-		//[x][1] is the matched index in the periodicTable
-		//example p, h, i, l, i, p would be [[0,14],[1,0],[2,52]] etc
+		//singles will hold the single matches found for input and the original index of the letter that it was to match
+		//example philip => [0, 14, 1, 1, 2, 54, 3, -1, 4, 54, 5, 14]
 		singles : [],
-		//same logic as above would apply, only the array would contain the index of both letters the double could represent
-		//eg [[0,1,-1][1,2,-1][2,3,-1][3,4,2]] would be the same as ph, hi, il, li with [x][2] telling if there's a match
+		//doubles will follow suite with singles but contain a triple set for the two indexes that the match would replace
+		//example philip => [0, 1, -1, 1, 2, -1, 2, 3, -1, 3, 4, 3, 4, 5, -1]
 		doubles : [],
-		//possible will be a holder for the arrays in singles and doubles that hold possible values
-		//meaning that singles[x][1] != -1 and doubles[x][2] != -1
-		possible : [],
 		waysToSpell : []
 	}
 };
@@ -38,7 +34,7 @@ var controls = {
 	//example Philip becomes [[0, p], [1, h], [2, i], [3, l], [4, i], [5, p]]
 	singlizeName : function(name) {
 		for (var i = 0; i < name.length; i++) {
-			model.name.singles.push([i, name.slice(i, i + 1)]);
+			model.name.singles.push(i, name.slice(i, i + 1));
 		}
 		return model.name.singles;
 	},
@@ -46,23 +42,25 @@ var controls = {
 	//the array format is [[index of first, index of second, string pair], etc] such that ph would be:
 	//[[0,1,"ph"]] thus conserving the positional information in the original string
 	doublizeName : function(name) {
-		for (var i = 1; i < name.length; i++) {
-			model.name.doubles.push([[i - 1, i], model.name.singles[i - 1][1] + model.name.singles[i][1]]);
+		for (var i = 1; i < (name.length * 2) - 1; i += 2) {
+			model.name.doubles.push((i-1)/2, Math.ceil(i/2), model.name.singles[i] + model.name.singles[i + 2]);
 		}
 		return model.name.doubles;
 	},
 	//compares the model.name.singles/doubles to periodic table and pushes the index of matched items into an object
 	//returns this object to be passed to another function
 	compareToTable : function(arrayOfSingles, arrayOfDoubles) {
+		var indexTracker = 0;
 		var matches = {
 			singles : [],
 			doubles : []
 		};
-		for (var i = 0; i < arrayOfSingles.length; i++){
-			matches.singles.push([i, model.periodicTable.indexOf(arrayOfSingles[i][1])]);
+		for (var i = 0; i < arrayOfSingles.length; i += 2){
+			matches.singles.push(arrayOfSingles[i], model.periodicTable.indexOf(arrayOfSingles[i + 1]));
 		}
-		for (var j = 0; j < arrayOfDoubles.length; j++) {
-			matches.doubles.push([[j, j + 1], model.periodicTable.indexOf(arrayOfDoubles[j][1])]);
+		for (var j = 2; j < arrayOfDoubles.length; j+=3) {
+			matches.doubles.push(indexTracker, indexTracker + 1, model.periodicTable.indexOf(arrayOfDoubles[j]));
+			indexTracker++;
 		}
 		//**************I want to remember this logic, but it isn't useful with my new method***************
 		// //neat logic here because the array.length property is being modified
@@ -154,6 +152,8 @@ var controls = {
 				return this.spellCheck(array, indexStart + 1);
 			} else if (array[i][1] == -1) {
 				return this.spellCheck(this.compareToTable(model.name.singles, model.name.doubles).doubles, indexStart);
+			} else {
+				return console.log("wtf is life");
 			}
 		} 
 	},
@@ -278,11 +278,12 @@ var view = {
 				var singles = controls.singlizeName(view.userInput); 
 				var doubles = controls.doublizeName(view.userInput);
 				var matches = controls.compareToTable(singles, doubles);
-				var possible = controls.arePossible(matches);
-				console.log("Matches  ", matches);
+				//var possible = controls.arePossible(matches);
+				console.log("singles  ", singles);
+				console.log("doubles   ", doubles);
+				console.log("matches  ", matches);
 				console.log("test of the spell check function  ", controls.spellCheck(matches.singles, 0));
-				console.log("this is the waysToSpell ", model.name.waysToSpell);
-				console.log("This is possible pulled from model   ", model.name.possible);	
+				console.log("this is the waysToSpell ", model.name.waysToSpell);	
 				controls.clearHolders();
 		});
 	}
