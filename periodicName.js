@@ -7,6 +7,21 @@
 // 		electronConfig : "1s1"
 // 	}
 // }
+var Counter = function(set) {
+	this.count = set;
+};
+Counter.prototype.get = function() {
+			return this.count;
+};
+Counter.prototype.increment = function(fold) {
+			return this.count += 1 * fold;
+}
+Counter.prototype.decrement = function() {
+			return this.count--;
+}
+Counter.prototype.reset = function() {
+			return this.count = 0;
+};
 var model = {
 	periodicTable : ["h", "he", 
 					 "li", "be", "b", "c", "n", "o", "f", "ne", 
@@ -23,7 +38,8 @@ var model = {
 		//doubles will follow suite with singles but contain a triple set for the two indexes that the match would replace
 		//example philip => [0, 1, -1, 1, 2, -1, 2, 3, -1, 3, 4, 3, 4, 5, -1]
 		doubles : [],
-		waysToSpell : []
+		first : [],
+		second : []
 	}
 };
 var controls = {
@@ -114,6 +130,10 @@ var controls = {
 		}
 		return tracker;
 	},
+	updateModel : function(object) {
+		model.name.singles = object.singles;
+		model.name.doubles = object.doubles;
+	},
 	//takes in two arrays, the first is the holes and the second is the doubles
 	//checks holes against doubles to say whether or not there's a way to replace things that allow gaps with a double 
 	checkHoles : function(array, array2) {
@@ -141,22 +161,46 @@ var controls = {
 
 		}
 	},
-	spellCheck : function(array, indexStart){
-		if (indexStart >= array.length){
-			return true;
-		}
-		for(var i = 0; i < array.length; i++) {
-			console.log("in the fooooor looooooop!");
-			if (array[i][0] == indexStart && array[i][1] != -1) {
-				model.name.waysToSpell.push(array[i][1]);
-				return this.spellCheck(array, indexStart + 1);
-			} else if (array[i][1] == -1) {
-				return this.spellCheck(this.compareToTable(model.name.singles, model.name.doubles).doubles, indexStart);
-			} else {
-				return console.log("wtf is life");
+	spellCheck : {
+		functionTracker : new Counter(0),
+		checkSingles : function(indexStart, callNumber) {
+		//logic
+			console.log("inside checkSingles: indexStart: ", indexStart, " callNumber: ", callNumber, " model.singles: ", model.name.singles);
+			var tracker = this.functionTracker.get();
+			var array = model.name.singles;
+			for (var i = indexStart; i < array.length; i += 2) {
+				if (array[i] > -1) {
+					model.name[callNumber].push(array[i]);
+					this.functionTracker.increment();
+					return this.checkSingles(indexStart + 2, callNumber);
+				} else if (array[i] == -1 && tracker == 0) {
+					return false;
+				} else if (array[i] == -1) {
+					this.functionTracker.reset();
+					return this.checkDoubles(i + Math.ceil(i/2), callNumber);
+				}
 			}
-		} 
+		},
+		 checkDoubles : function(indexStart, callNumber) {
+			//logic
+			console.log("inside checkDoubles: indexStart: ", indexStart, " callNumber: ", callNumber, " model.doubles: ", model.name.doubles);
+			var tracker = this.functionTracker.get();
+			var array = model.name.doubles;
+			for (var i = indexStart; i < array.length; i += 3) {
+				if (array[i] > -1) {
+					model.name[callNumber].push(array[i]);
+					this.functionTracker.increment();
+					return this.checkSingles((i - Math.ceil(i/3)) + 4, callNumber);
+				} else if (array[i] == -1 && tracker == 0) {
+					return false;
+				} else if (array[i] == -1) {
+					this.functionTracker.reset();
+					return this.checkSingles(indexStart - 1, callNumber); 
+				}
+			}
+		}
 	},
+
 	//object containing methods relevant to this subset of functionality
 	canSpell : {
 		//*********************************These functions are NOT DRY, but I wanted to get them working before I pulled out the functionality that they share*************************************
@@ -248,7 +292,8 @@ var controls = {
 	clearHolders : function() {
 		model.name.singles = [];
 		model.name.doubles = [];
-		model.name.possible = [];
+		model.name.first = [];
+		model.name.second = [];
 	}
 };
 var view = {
@@ -278,12 +323,11 @@ var view = {
 				var singles = controls.singlizeName(view.userInput); 
 				var doubles = controls.doublizeName(view.userInput);
 				var matches = controls.compareToTable(singles, doubles);
-				//var possible = controls.arePossible(matches);
-				console.log("singles  ", singles);
-				console.log("doubles   ", doubles);
-				console.log("matches  ", matches);
-				console.log("test of the spell check function  ", controls.spellCheck(matches.singles, 0));
-				console.log("this is the waysToSpell ", model.name.waysToSpell);	
+				controls.updateModel(matches);
+				controls.spellCheck.checkSingles(1, "first");
+				controls.spellCheck.checkDoubles(2, "second");
+				console.log("model.name.first after call to spellCheck   ", model.name.first);
+				console.log("model.name.second after call to spellCheck   ", model.name.second);
 				controls.clearHolders();
 		});
 	}
