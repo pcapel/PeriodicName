@@ -1,4 +1,12 @@
 //cleaner ver of application
+// periodicTable : {
+// 	h : {
+// 		name : "Hydrogen",
+// 		atomicWeight : 1.008,
+// 		atomicNumber : 1,
+// 		electronConfig : "1s1"
+// 	}
+// }
 var model = {
 	periodicTable : ["h", "he", 
 					 "li", "be", "b", "c", "n", "o", "f", "ne", 
@@ -18,7 +26,8 @@ var model = {
 		doubles : [],
 		//possible will be a holder for the arrays in singles and doubles that hold possible values
 		//meaning that singles[x][1] != -1 and doubles[x][2] != -1
-		possible : []
+		possible : [],
+		waysToSpell : []
 	}
 };
 var controls = {
@@ -129,6 +138,24 @@ var controls = {
 	//the ones [[1,1],[1,1],[1],[1],[1,1,1]] and return them in an array 
 	pullFromNested : function(array, level) {
 		//some sort of loop that iterates based on the level input
+		var holder = [];
+		for (var i = level; i > array.length; i--) {
+
+		}
+	},
+	spellCheck : function(array, indexStart){
+		if (indexStart >= array.length){
+			return true;
+		}
+		for(var i = 0; i < array.length; i++) {
+			console.log("in the fooooor looooooop!");
+			if (array[i][0] == indexStart && array[i][1] != -1) {
+				model.name.waysToSpell.push(array[i][1]);
+				return this.spellCheck(array, indexStart + 1);
+			} else if (array[i][1] == -1) {
+				return this.spellCheck(this.compareToTable(model.name.singles, model.name.doubles).doubles, indexStart);
+			}
+		} 
 	},
 	//object containing methods relevant to this subset of functionality
 	canSpell : {
@@ -251,11 +278,11 @@ var view = {
 				var singles = controls.singlizeName(view.userInput); 
 				var doubles = controls.doublizeName(view.userInput);
 				var matches = controls.compareToTable(singles, doubles);
-				console.log("Matches  ", matches);
 				var possible = controls.arePossible(matches);
-				console.log("Test of withSingles   ",controls.canSpell.withSingles(possible, view.userInput));
-				console.log("Test of withDoubles   ",controls.canSpell.withDoubles(possible, view.userInput));
-				console.log("Test of mixedVariant   ",controls.canSpell.mixedVariant(possible, view.userInput));
+				console.log("Matches  ", matches);
+				console.log("test of the spell check function  ", controls.spellCheck(matches.singles, 0));
+				console.log("this is the waysToSpell ", model.name.waysToSpell);
+				console.log("This is possible pulled from model   ", model.name.possible);	
 				controls.clearHolders();
 		});
 	}
