@@ -106,60 +106,9 @@ var controls = {
 		}
 		return possible;
 	},
-	//takes an array and searches it from index 0 and returns an array containg the holes it finds between values
-	//example array passed [1, 2, 4, 5] tracker outputs [3], if input is [3,4,6] with a string.length of 7 output is [0, 1, 2, 5] :3
-	//does run into issue when the hole is larger than a single position
-	//******************************needs revision*****************************
-	findHoles : function(array, string) {
-		var tracker = [];
-		if (array.length == string.length) {
-			return tracker;
-		} else {
-			//handles situations where the first letters of the string are not represented
-			//eg Aaron
-			for (var i = array[0] - 1; i >= 0; i--) {
-				tracker.unshift(i);
-			}
-			for (var j = 0; j < array.length; j++) {
-				if (array[j] == array[j + 1] -1 || array[j + 1] == undefined) {
-
-				} else {
-					tracker.push(array[j + 1] -1);
-				}
-			}
-		}
-		return tracker;
-	},
 	updateModel : function(object) {
 		model.name.singles = object.singles;
 		model.name.doubles = object.doubles;
-	},
-	//takes in two arrays, the first is the holes and the second is the doubles
-	//checks holes against doubles to say whether or not there's a way to replace things that allow gaps with a double 
-	checkHoles : function(array, array2) {
-		var canFillAt = [];
-		for (var i = 0; i < array2.length; i++) {
-			canFillAt.push(array[array.indexOf(array2[i][0])]);
-		}
-		return canFillAt;
-	},
-	//as in the verb legitimate not the noun.
-	//checks to see if the possible fill will break the proper spelling by creating a gap
-	//example NaCaCu could also be NAcAcU...oh *(&^.  This isn't addressed by my program at all...
-	//I can probably write this function to do that
-	//******************************************************Do this*******************************************************
-	legitimateFill : function(array, array2) {
-		//
-	},
-	//I think I want to have it take an array and the level you want data returned from
-	//example [[1,1],1,[1,1],1,[1],1,[1],[1,1,1],1] passed in with level 1 would pull out
-	//the ones [[1,1],[1,1],[1],[1],[1,1,1]] and return them in an array 
-	pullFromNested : function(array, level) {
-		//some sort of loop that iterates based on the level input
-		var holder = [];
-		for (var i = level; i > array.length; i--) {
-
-		}
 	},
 	spellCheck : {
 		functionTracker : new Counter(0),
@@ -198,84 +147,6 @@ var controls = {
 					return this.checkSingles(indexStart - 1, callNumber); 
 				}
 			}
-		}
-	},
-
-	//object containing methods relevant to this subset of functionality
-	canSpell : {
-		//*********************************These functions are NOT DRY, but I wanted to get them working before I pulled out the functionality that they share*************************************
-		//pass in model.name.possible and pull out arrays that have .length == 2 and a string to match to
-		//checks to see if the input can be spelled with only single letter elements
-		//ie if the sequence of single matches is both sequential (with respect to the string input) and the right length according to input string
-		withSingles : function(array, string) {
-			var holder = [];
-			//this can probably be abstracted to it's own function
-			//tentatively called *pullFromNested
-			for (var i = 0; i < array.length; i++) {
-				if (array[i].length == 2 && typeof array[i][0] == "number") {
-					holder.push(array[i][0]);
-				}
-			}
-			//*
-			if (holder[0] > 0) {
-				return false;
-			}
-			if (string.length == holder.length){
-				return true;
-			} else {
-				return false;
-			}
-		},
-		//takes in the model.name.possible and pulls out arrays that have .length == 3 and the string to match to
-		//fills holder with the arrays that have arrays in them then flattens them and sorts out doubled values
-		//compares to the input string for length, which will return true or false 
-		withDoubles : function(array, string) {
-			var holder = []; 
-			var metaHolder = [];
-			//here's that same sort of logic for *pullFromNested
-			//it might take passing the level you want to pull from or something similar
-			for (var i = 0; i < array.length; i++) {
-				if (array[i].length == 2 && typeof array[i][0] == "object") {
-					holder.push(array[i][0]);
-				}
-			}
-			//*
-			//this can DEFINITELY become its own method
-			//call it *flattenFilter or something
-			holder = Array.prototype.concat.apply([], holder);
-			holder = holder.filter(function(item, pos, ary) {
-         		return !pos || item != ary[pos - 1];
-     		});
-     		//*
-			if(holder.length == string.length){
-				return true;
-			} else {
-				return false;
-			}
-		},
-		mixedVariant : function(array, string) {
-			var holderSingle = [];
-			var holderDouble = [];
-			var holes;
-			//look familiar?
-			//* pullFromNested
-			for (var i = 0; i < array.length; i++) {
-				if (array[i].length == 2 && typeof array[i][0] == "number") {
-					holderSingle.push(array[i][0]);
-				}
-			}
-			for (var j = 0; j < array.length; j++) {
-				if (array[j].length == 2 && typeof array[j][0] == "object") {
-					holderDouble.push(array[j][0]);
-				}
-			}
-			//*
-			//look through holder single for the spots that it needs something to fill in
-			holes = controls.findHoles(holderSingle, string);
-			//check to see if any of the doubles match up to holes
-			console.log("Holes   ", holes);
-			console.log("Can Fill At  ", controls.checkHoles(holes, holderDouble));
-			console.log("    ", holderSingle, "     ", holderDouble);
 		}
 	},
 	//gets the symbols that are possible for spelling the name
