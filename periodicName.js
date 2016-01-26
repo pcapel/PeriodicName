@@ -72,8 +72,8 @@ var controls = {
 					model.name[callNumber].push(array[i]); //pushes valid indices into the array
 					controls.counter.increment(1); //increment the counter to decide which tail call to execute
 					return this.checkSingles(indexStart + 1, callNumber); //recursive call to the same function, allows first callNumber to weed out easy single only spellings
-				} else if (array[i] == -1 && tracker == 0) {//checks tracker to ensure that at least one check of doubles has been done before terminating
-					return false;
+				} else if (array[i] == -1 && tracker == 0) {//checks tracker to ensure that at least one check of doubles has been done before finally calling checkDouble 
+					return this.checkDoubles(indexStart + 1, callNumber); //this ensures that checkDouble isn't skipping out on a possible final value
 				} else if (array[i] == -1) { //calls doubles to ensure that a value doesn't exist to satisfy spelling
 					controls.counter.reset(); //reset counter to show checkSingles that call has occured
 					return this.checkDoubles(i, callNumber); //calls with the current i as indexStart 
@@ -87,7 +87,7 @@ var controls = {
 				if (array[i] > -1) {
 					model.name[callNumber].push(array[i]); //same logic as above
 					controls.counter.increment(1);
-					return this.checkSingles(i + 2, callNumber); //indexStart increments by 2 because a 2 letter match was found
+					return this.checkDoubles(i + 1, callNumber); //indexStart increments by 2 because a 2 letter match was found
 				} else if (array[i] == -1 && tracker == 0) { //same logic as above
 					return false;
 				} else if (array[i] == -1) {
@@ -97,12 +97,16 @@ var controls = {
 			}
 		}
 	},
-	validateSpelling : function(array, string) { //returns a boolean for a check against the string
+	holdValues : function(array) {
 		var holder = [];
-		var symbol;
 		for (var i = 0; i < array.length; i++) {
 			holder.push(model.periodicTable[array[i]]);
 		}
+		return holder;
+	},
+	validateSpelling : function(array, string) { //returns a boolean for a check against the string
+		var holder = this.holdValues(array);
+		var symbol;
 		holder = holder.join("");
 		console.log(holder);
 		if (holder == string) {
@@ -112,9 +116,7 @@ var controls = {
 		}
 	},
 	validateDiff : function(array1, array2) {
-		var holder1 = array1.join();
-		var holder2 = array2.join();
-		if (holder1 == holder2) {
+		if (JSON.stringify(array1) === JSON.stringify(array2)) {
 			console.log("No difference");
 			return false;
 		} else {
@@ -124,13 +126,13 @@ var controls = {
 	},
 	//gets the symbols that are possible for spelling the name
 	//still will need something similar, but I don't know what this is doing right now
-	grabSymbols : function(array) {
-		var matches = model.possibleMatches;
-		var table = model.periodicTable;
-		var symbols = model.symbols;
-		for (var i = 0; i < matches.length; i++) {
-			symbols.push(table[matches[i]]);
+	grabPeriodicObjects : function(array) {
+		var holder = this.holdValues(array);
+		var periodicObjects = {};
+		for (var i = 0; i < holder.length; i++) {
+			periodicObjects[i] = periodicObject[holder[i]];
 		}
+		return periodicObjects;
 	},
 	//clears model holders for new name eval
 	clearHolders : function() {
@@ -174,6 +176,8 @@ var view = {
 				controls.spellCheck.checkDoubles(0, "second");
 				console.log("first array after call to spellcheck   ", model.name.first);
 				console.log("second array after call to spellcheck   ", model.name.second);
+				controls.validateDiff(model.name.first, model.name.second);
+				console.log("grabPeriodicObjects test  ", controls.grabPeriodicObjects(model.name.second));
 				controls.clearHolders();
 		});
 	}
