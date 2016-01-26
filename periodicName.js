@@ -9,20 +9,16 @@ var model = {
 					 "fr", "ra", "ac", "th", "pa", "u", "np", "pu", "am", "cm", "bk", "cf", "es", "fm", "md", "no", "lr", "rf", "db", "sg", "bh", "hs", "mt", "ds", "rg", "cn", "uut", "fl", "uup", "lv", "uus", "uuo"
 					],
 	name : {
-		//singles will hold the single matches found for input and the original index of the letter that it was to match
-		//example philip => [0, 14, 1, 1, 2, 54, 3, -1, 4, 54, 5, 14]
-		singles : [],
-		//doubles will follow suite with singles but contain a triple set for the two indexes that the match would replace
-		//example philip => [0, 1, -1, 1, 2, -1, 2, 3, -1, 3, 4, 3, 4, 5, -1]
-		doubles : [],
-		first : [],
-		second : []
+		singles : [],//gets updated to hold, single letters, then their matching indices from periodic table
+		doubles : [],//gets updated to hold double letters, then their matching indices from periodic table
+		first : [],//gets updated to hold the call to spellCheck starting with checkSingles
+		second : []//get updated to hold the call to spellCheck starting with checkDoubles
 	}
 };
 var controls = {
 	init : function() {
 		view.init();
-		controls.counter = this.forCount();
+		controls.counter = this.forCount();//initialize the counter used in spellCheck functions
 	},
 	forCount : function() {
 		var counter = 0;
@@ -38,90 +34,61 @@ var controls = {
 			}
 		};
 	},
-	//takes a string and returns an array containing arrays of [string_index, string] pairs
-	//example Philip becomes [[0, p], [1, h], [2, i], [3, l], [4, i], [5, p]]
 	singlizeName : function(name) {
 		for (var i = 0; i < name.length; i++) {
-			model.name.singles.push(name.slice(i, i + 1));
+			model.name.singles.push(name.slice(i, i + 1));//pushes the single letters of a name to model.name.singles
 		}
 		return model.name.singles;
 	},
-	//takes a string and returns the sequential doubles of letters eg philip => ph, hi, il, etc
-	//the array format is [[index of first, index of second, string pair], etc] such that ph would be:
-	//[[0,1,"ph"]] thus conserving the positional information in the original string
 	doublizeName : function(name) {
 		for (var i = 0; i < name.length - 1; i++) {
-			model.name.doubles.push(model.name.singles[i] + model.name.singles[i + 1]);
+			model.name.doubles.push(model.name.singles[i] + model.name.singles[i + 1]);//pushes the various 2 letter combos to model.name.doubles
 		}
 		return model.name.doubles;
 	},
-	//compares the model.name.singles/doubles to periodic table and pushes the index of matched items into an object
-	//returns this object to be passed to another function
-	compareToTable : function(arrayOfSingles, arrayOfDoubles) {
-		var indexTracker = 0;
+	compareToTable : function(arrayOfSingles, arrayOfDoubles) { //takes in the singles and doubles arrays
 		var matches = {
 			singles : [],
 			doubles : []
-		};
+		}; //returns this object
 		for (var i = 0; i < arrayOfSingles.length; i++){
-			matches.singles.push(model.periodicTable.indexOf(arrayOfSingles[i]));
+			matches.singles.push(model.periodicTable.indexOf(arrayOfSingles[i])); //pushes the indexOf each single letter as found in periodicTable, -1 for not there
 		}
 		for (var j = 0; j < arrayOfDoubles.length; j++) {
-			matches.doubles.push(model.periodicTable.indexOf(arrayOfDoubles[j]));
-			indexTracker++;
+			matches.doubles.push(model.periodicTable.indexOf(arrayOfDoubles[j])); //pushes the indexOf each double letter combo as founnd in periodicTable, -1 for not there
 		}
 		return matches;
 	},
-	//takes in the object returned from compareToTable above
-	//returns an array from the model that has only those sub-arrays where compare to table returned greater than 0
-	arePossible : function(obj){
-		var singles = obj.singles;
-		var doubles = obj.doubles;
-		var possible = model.name.possible;
-		for (var i =0; i < singles.length; i++) {
-			if (singles[i][1] > -1) {
-				possible.push(singles[i]);
-			}
-		}
-		for (var j = 0; j < doubles.length; j++) {
-			if (doubles[j][1] > -1) {
-				possible.push(doubles[j])
-			}
-		}
-		return possible;
-	},
-	updateModel : function(object) {
+	updateModel : function(object) { //updates the model with the values from the matches object returned above
 		model.name.singles = object.singles;
 		model.name.doubles = object.doubles;
 	},
-	spellCheck : {
-		checkSingles : function(indexStart, callNumber) {
-		//logic
-			var tracker = controls.counter.get();
+	spellCheck : { //two functions that call each other to build possible spellings with the elements
+		checkSingles : function(indexStart, callNumber) { //callNumber defines the model array to push to, currently only model.name.first and model.name.second
+			var tracker = controls.counter.get(); //counter to track which function is being called and how often
 			var array = model.name.singles;
 			for (var i = indexStart; i < array.length; i++) {
 				if (array[i] > -1) {
-					model.name[callNumber].push(array[i]);
-					controls.counter.increment(1);
-					return this.checkSingles(indexStart + 1, callNumber);
-				} else if (array[i] == -1 && tracker == 0) {
+					model.name[callNumber].push(array[i]); //pushes valid indices into the array
+					controls.counter.increment(1); //increment the counter to decide which tail call to execute
+					return this.checkSingles(indexStart + 1, callNumber); //recursive call to the same function, allows first callNumber to weed out easy single only spellings
+				} else if (array[i] == -1 && tracker == 0) {//checks tracker to ensure that at least one check of doubles has been done before terminating
 					return false;
-				} else if (array[i] == -1) {
-					controls.counter.reset();
-					return this.checkDoubles(i, callNumber);
+				} else if (array[i] == -1) { //calls doubles to ensure that a value doesn't exist to satisfy spelling
+					controls.counter.reset(); //reset counter to show checkSingles that call has occured
+					return this.checkDoubles(i, callNumber); //calls with the current i as indexStart 
 				}
 			}
 		},
 		 checkDoubles : function(indexStart, callNumber) {
-			//logic
 			var tracker = controls.counter.get();
 			var array = model.name.doubles;
 			for (var i = indexStart; i < array.length; i++) {
 				if (array[i] > -1) {
-					model.name[callNumber].push(array[i]);
+					model.name[callNumber].push(array[i]); //same logic as above
 					controls.counter.increment(1);
-					return this.checkSingles(i + 2, callNumber);
-				} else if (array[i] == -1 && tracker == 0) {
+					return this.checkSingles(i + 2, callNumber); //indexStart increments by 2 because a 2 letter match was found
+				} else if (array[i] == -1 && tracker == 0) { //same logic as above
 					return false;
 				} else if (array[i] == -1) {
 					controls.counter.reset();
@@ -130,7 +97,7 @@ var controls = {
 			}
 		}
 	},
-	validateSpelling : function(array, string) {
+	validateSpelling : function(array, string) { //returns a boolean for a check against the string
 		var holder = [];
 		var symbol;
 		for (var i = 0; i < array.length; i++) {
@@ -200,9 +167,6 @@ var view = {
 				var singles = controls.singlizeName(view.userInput); 
 				var doubles = controls.doublizeName(view.userInput);
 				var matches = controls.compareToTable(singles, doubles);
-				console.log(singles);
-				console.log(doubles);
-				console.log(matches);
 				controls.updateModel(matches);
 				console.log("model singles  ", model.name.singles);
 				console.log("model doubles  ", model.name.doubles);
