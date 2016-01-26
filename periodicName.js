@@ -177,20 +177,32 @@ var view = {
 				if (controls.validateSpelling(options.first, view.userInput)) {
 					firstObjects = controls.grabPeriodicObjects(options.first);
 					for (elements in firstObjects) {
-						$("#generatedName").append("<ul>" + firstObjects[elements].name + "</ul>");
+						$("#generatedName").append("<li>" + firstObjects[elements].atomicNumber + "</li>" +
+												   "<li>" + firstObjects[elements].symbol + "</li>" +
+												   "<li>" + firstObjects[elements].name + "</li>" +
+												   "<li>" + firstObjects[elements].atomicWeight + "</li>" 
+							);
 						console.log("Being done, but not seen");
 					}
 				} else if (controls.validateSpelling(options.second, view.userInput)) {
 					secondObjects = controls.grabPeriodicObjects(options.second);
 					for (elements in secondObjects) {
-						$("#generatedName").append("<ul>" + secondObjects[elements].name + "</uo>");
+						$("#generatedName").append("<li>" + secondObjects[elements].atomicNumber + "</li>" +
+												   "<li>" + firstObjects[elements].symbol + "</li>" +
+												   "<li>" + firstObjects[elements].name + "</li>" +
+												   "<li>" + firstObjects[elements].atomicWeight + "</li>" 
+							);
 						console.log("Being done, but not seen");
 					}
 				}
 			} else if (controls.validateSpelling(options.first, view.userInput)) {
 				firstObjects = controls.grabPeriodicObjects(options.first);
 					for (elements in firstObjects) {
-						$("#generatedName").append("<ul>" + firstObjects[elements].name + "</ul>");
+						$("#generatedName").append("<li>" + firstObjects[elements].atomicNumber + "</li>" +
+												   "<li>" + firstObjects[elements].symbol + "</li>" +
+												   "<li>" + firstObjects[elements].name + "</li>" +
+												   "<li>" + firstObjects[elements].atomicWeight + "</li>"
+							);
 						console.log("Being done, but not seen");
 					}
 			}
@@ -221,7 +233,10 @@ var view = {
 
 controls.init();
 
-
+//atomicNumber
+//Symbol
+//Name
+//atomicWeight
 
 //Vomit on my sweater already, OLD SPAGHETTI
 //array of all elemental symbols in lowercase
