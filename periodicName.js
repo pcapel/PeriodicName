@@ -1,12 +1,115 @@
 //cleaner ver of application
-// periodicTable : {
+// periodicObject : {
 // 			   h : {
 //				symbol : "H"
 //		 		name : "Hydrogen",
 // 				atomicWeight : 1.008,
 // 				atomicNumber : 1
-// 			}
-//	 }
+// 			},
+// 				// he : {
+// 					symbol : ,
+// 					name : ,
+// 					atomicWeight : ,
+// 					atomicNumber : 
+// 				// },
+// 				// li : {
+// 					symbol : ,
+// 					name : ,
+// 					atomicWeight : ,
+// 					atomicNumber : 
+// 				// },
+// 				// be : {
+// 					symbol : ,
+// 					name : ,
+// 					atomicWeight : ,
+// 					atomicNumber : 
+// 				// },
+// 				// b : {
+// 					symbol : ,
+// 					name : ,
+// 					atomicWeight : ,
+// 					atomicNumber : 
+// 				// },
+// 				// c : {
+// 					symbol : ,
+// 					name : ,
+// 					atomicWeight : ,
+// 					atomicNumber : 
+// 				// },
+// 				// n : {
+// 					symbol : ,
+// 					name : ,
+// 					atomicWeight : ,
+// 					atomicNumber : 
+// 				// },
+// 				// o : {
+// 					symbol : ,
+// 					name : ,
+// 					atomicWeight : ,
+// 					atomicNumber : 
+// 				// },
+// 				// f : {
+// 					symbol : ,
+// 					name : ,
+// 					atomicWeight : ,
+// 					atomicNumber : 
+// 				// },
+// 				// ne : {
+// 					symbol : ,
+// 					name : ,
+// 					atomicWeight : ,
+// 					atomicNumber : 
+// 				// },
+// 				// na : {
+// 					symbol : ,
+// 					name : ,
+// 					atomicWeight : ,
+// 					atomicNumber : 
+// 				// },
+// 				// mg : {
+// 					symbol : ,
+// 					name : ,
+// 					atomicWeight : ,
+// 					atomicNumber : 
+// 				// },
+// 				// al {
+// 					symbol : ,
+// 					name : ,
+// 					atomicWeight : ,
+// 					atomicNumber : 
+// 				// },
+// 				// si {
+// 					symbol : ,
+// 					name : ,
+// 					atomicWeight : ,
+// 					atomicNumber : 
+// 				// },
+// 				// p : {
+// 					symbol : ,
+// 					name : ,
+// 					atomicWeight : ,
+// 					atomicNumber : 
+// 				// },
+// 				// s : {
+// 					symbol : ,
+// 					name : ,
+// 					atomicWeight : ,
+// 					atomicNumber : 
+// 				// },
+// 				// cl : {
+// 					symbol : ,
+// 					name : ,
+// 					atomicWeight : ,
+// 					atomicNumber : 
+// 				// },
+// 				// ar : {
+// 					symbol : ,
+// 					name : ,
+// 					atomicWeight : ,
+// 					atomicNumber : 
+// 				// },
+// //	 }
+//need to figure out a more consisten implementation for this...
 var Counter = function(set) {
 	this.count = set;
 };
