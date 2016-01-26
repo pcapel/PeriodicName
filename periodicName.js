@@ -1,21 +1,4 @@
 //cleaner ver of application
-
-//need to figure out a more consisten implementation for this...
-var Counter = function(set) {
-	this.count = set;
-};
-Counter.prototype.get = function() {
-			return this.count;
-};
-Counter.prototype.increment = function(fold) {
-			return this.count += 1 * fold;
-}
-Counter.prototype.decrement = function() {
-			return this.count--;
-}
-Counter.prototype.reset = function() {
-			return this.count = 0;
-};
 var model = {
 	periodicTable : ["h", "he", 
 					 "li", "be", "b", "c", "n", "o", "f", "ne", 
