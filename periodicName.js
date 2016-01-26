@@ -57,6 +57,7 @@ var controls = {
 		for (var j = 0; j < arrayOfDoubles.length; j++) {
 			matches.doubles.push(model.periodicTable.indexOf(arrayOfDoubles[j])); //pushes the indexOf each double letter combo as founnd in periodicTable, -1 for not there
 		}
+		matches.doubles.push(-1);
 		return matches;
 	},
 	updateModel : function(object) { //updates the model with the values from the matches object returned above
@@ -67,38 +68,29 @@ var controls = {
 		checkSingles : function(indexStart, callNumber) { 
 			var tracker = controls.counter.get(); 
 			var array = model.name.singles;
-			for (var i = indexStart; i < array.length; i++) {
-				if (array[i] > -1) {
-					model.name[callNumber].push(array[i]); 
-					controls.counter.increment(1); 
-					return this.checkSingles(indexStart + 1, callNumber); 
-				} else if (array[i] == -1 && tracker == 0) {
-					return this.checkDoubles(indexStart, callNumber); 
-				} else if (array[i] == -1) { 
-					controls.counter.reset(); 
-					return this.checkDoubles(i, callNumber); 
-				}
+			console.log("inside checkSingles, tracker is: ", tracker);
+			if (array[indexStart] > -1) {
+				model.name[callNumber].push(array[indexStart]);  
+				return this.checkSingles(indexStart + 1, callNumber); 
+			} else if (array[indexStart] == -1 && tracker <= 2) {
+				controls.counter.increment(1);
+				return this.checkDoubles(indexStart, callNumber); 
+			} else if (array[indexStart] == -1 && tracker == 2) { 
+				return false; 
 			}
 		},
 		 checkDoubles : function(indexStart, callNumber) {
 			var tracker = controls.counter.get();
 			var array = model.name.doubles;
-			for (var i = indexStart; i < array.length; i++) {
-				if (array[i] > -1) {
-					model.name[callNumber].push(array[i]); 
-					controls.counter.increment(1);
-					if (tracker == 0){
-						console.log("tracker == 0 checkDoubles");
-						return this.checkDoubles(i + 1, callNumber);
-					} else if (tracker > 0) {
-						console.log("checkDoubles tracker > 0 ", i);
-						return this.checkDoubles(i + 3, callNumber);
-					} 
-				} else if (array[i] == -1 && tracker == 0) { 
-					return false;
-				} else if (array[i] == -1) {
-					return this.checkSingles(indexStart + tracker, callNumber) && controls.counter.reset(); 
-				}
+			console.log("inside checkDoubles, tracker is: ", tracker);
+			if (array[indexStart] > -1) {
+				model.name[callNumber].push(array[indexStart]); 
+				return this.checkDoubles(indexStart + 2, callNumber);
+			} else if (array[indexStart] == -1 && tracker <= 2) {
+				controls.counter.increment(1); 
+				return this.checkSingles(indexStart, callNumber);
+			} else if (array[indexStart] == -1 && tracker == 2) {
+				return false; 
 			}
 		}
 	},
@@ -172,7 +164,6 @@ var view = {
 		spelledOptions : function() {
 			var options = controls.holdOptions();
 			var firstObjects, secondObjects;
-			console.log("probably an issue with ifs");
 			if (controls.validateDiff(options.first, options.second)) {
 				if (controls.validateSpelling(options.first, view.userInput)) {
 					firstObjects = controls.grabPeriodicObjects(options.first);
@@ -184,19 +175,17 @@ var view = {
 														"<li>" + firstObjects[elements].atomicWeight + "</li>" +
 													"</ul>"
 							);
-						console.log("Being done, but not seen");
 					}
 				} else if (controls.validateSpelling(options.second, view.userInput)) {
 					secondObjects = controls.grabPeriodicObjects(options.second);
 					for (elements in secondObjects) {
 						$("#generatedName").append("<ul>" +
 														"<li>" + secondObjects[elements].atomicNumber + "</li>" +
-													    "<li>" + firstObjects[elements].symbol + "</li>" +
-													    "<li>" + firstObjects[elements].name + "</li>" +
-													    "<li>" + firstObjects[elements].atomicWeight + "</li>" +
+													    "<li>" + secondObjects[elements].symbol + "</li>" +
+													    "<li>" + secondObjects[elements].name + "</li>" +
+													    "<li>" + secondObjects[elements].atomicWeight + "</li>" +
 													"</ul>"
 							);
-						console.log("Being done, but not seen");
 					}
 				}
 			} else if (controls.validateSpelling(options.first, view.userInput)) {
@@ -209,7 +198,6 @@ var view = {
 													    "<li>" + firstObjects[elements].atomicWeight + "</li>" +
 													"</ul>"
 							);
-						console.log("Being done, but not seen");
 					}
 			}
 		}
@@ -224,6 +212,7 @@ var view = {
 				console.log("model singles  ", model.name.singles);
 				console.log("model doubles  ", model.name.doubles);
 				controls.spellCheck.checkSingles(0, "first");
+				controls.counter.reset();
 				console.log("this is in between first call and second call");
 				controls.spellCheck.checkDoubles(0, "second");
 				console.log("first array after call to spellcheck   ", model.name.first);
