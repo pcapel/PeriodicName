@@ -63,20 +63,20 @@ var controls = {
 		model.name.singles = object.singles;
 		model.name.doubles = object.doubles;
 	},
-	spellCheck : { //two functions that call each other to build possible spellings with the elements
-		checkSingles : function(indexStart, callNumber) { //callNumber defines the model array to push to, currently only model.name.first and model.name.second
-			var tracker = controls.counter.get(); //counter to track which function is being called and how often
+	spellCheck : { 
+		checkSingles : function(indexStart, callNumber) { 
+			var tracker = controls.counter.get(); 
 			var array = model.name.singles;
 			for (var i = indexStart; i < array.length; i++) {
 				if (array[i] > -1) {
-					model.name[callNumber].push(array[i]); //pushes valid indices into the array
-					controls.counter.increment(1); //increment the counter to decide which tail call to execute
-					return this.checkSingles(indexStart + 1, callNumber); //recursive call to the same function, allows first callNumber to weed out easy single only spellings
-				} else if (array[i] == -1 && tracker == 0) {//checks tracker to ensure that at least one check of doubles has been done before finally calling checkDouble 
-					return this.checkDoubles(indexStart + 1, callNumber); //this ensures that checkDouble isn't skipping out on a possible final value
-				} else if (array[i] == -1) { //calls doubles to ensure that a value doesn't exist to satisfy spelling
-					controls.counter.reset(); //reset counter to show checkSingles that call has occured
-					return this.checkDoubles(i, callNumber); //calls with the current i as indexStart 
+					model.name[callNumber].push(array[i]); 
+					controls.counter.increment(1); 
+					return this.checkSingles(indexStart + 1, callNumber); 
+				} else if (array[i] == -1 && tracker == 0) {
+					return this.checkDoubles(indexStart, callNumber); 
+				} else if (array[i] == -1) { 
+					controls.counter.reset(); 
+					return this.checkDoubles(i, callNumber); 
 				}
 			}
 		},
@@ -85,14 +85,19 @@ var controls = {
 			var array = model.name.doubles;
 			for (var i = indexStart; i < array.length; i++) {
 				if (array[i] > -1) {
-					model.name[callNumber].push(array[i]); //same logic as above
+					model.name[callNumber].push(array[i]); 
 					controls.counter.increment(1);
-					return this.checkDoubles(i + 1, callNumber); //indexStart increments by 2 because a 2 letter match was found
-				} else if (array[i] == -1 && tracker == 0) { //same logic as above
+					if (tracker == 0){
+						console.log("tracker == 0 checkDoubles");
+						return this.checkDoubles(i + 1, callNumber);
+					} else if (tracker > 0) {
+						console.log("checkDoubles tracker > 0 ", i);
+						return this.checkDoubles(i + 3, callNumber);
+					} 
+				} else if (array[i] == -1 && tracker == 0) { 
 					return false;
 				} else if (array[i] == -1) {
-					controls.counter.reset();
-					return this.checkSingles(indexStart, callNumber); 
+					return this.checkSingles(indexStart + tracker, callNumber) && controls.counter.reset(); 
 				}
 			}
 		}
@@ -109,10 +114,9 @@ var controls = {
 			first : model.name.first,
 			second: model.name.second
 		}
-	}
-	validateSpelling : function(array, string) { //returns a boolean for a check against the string
+	},
+	validateSpelling : function(array, string) { 
 		var holder = this.holdValues(array);
-		var symbol;
 		holder = holder.join("");
 		console.log(holder);
 		if (holder == string) {
@@ -167,8 +171,28 @@ var view = {
 		},
 		spelledOptions : function() {
 			var options = controls.holdOptions();
-			if (validateDiff(options.first, options.second)) {
-				if (validateSpelling)
+			var firstObjects, secondObjects;
+			console.log("probably an issue with ifs");
+			if (controls.validateDiff(options.first, options.second)) {
+				if (controls.validateSpelling(options.first, view.userInput)) {
+					firstObjects = controls.grabPeriodicObjects(options.first);
+					for (elements in firstObjects) {
+						$("#generatedName").append("<ul>" + firstObjects[elements].name + "</ul>");
+						console.log("Being done, but not seen");
+					}
+				} else if (controls.validateSpelling(options.second, view.userInput)) {
+					secondObjects = controls.grabPeriodicObjects(options.second);
+					for (elements in secondObjects) {
+						$("#generatedName").append("<ul>" + secondObjects[elements].name + "</uo>");
+						console.log("Being done, but not seen");
+					}
+				}
+			} else if (controls.validateSpelling(options.first, view.userInput)) {
+				firstObjects = controls.grabPeriodicObjects(options.first);
+					for (elements in firstObjects) {
+						$("#generatedName").append("<ul>" + firstObjects[elements].name + "</ul>");
+						console.log("Being done, but not seen");
+					}
 			}
 		}
 	},
@@ -182,11 +206,13 @@ var view = {
 				console.log("model singles  ", model.name.singles);
 				console.log("model doubles  ", model.name.doubles);
 				controls.spellCheck.checkSingles(0, "first");
+				console.log("this is in between first call and second call");
 				controls.spellCheck.checkDoubles(0, "second");
 				console.log("first array after call to spellcheck   ", model.name.first);
 				console.log("second array after call to spellcheck   ", model.name.second);
 				controls.validateDiff(model.name.first, model.name.second);
 				console.log("grabPeriodicObjects test  ", controls.grabPeriodicObjects(model.name.second));
+				view.updateWith.spelledOptions();
 				controls.clearHolders();
 		});
 	}
@@ -194,6 +220,7 @@ var view = {
 };
 
 controls.init();
+
 
 
 //Vomit on my sweater already, OLD SPAGHETTI
