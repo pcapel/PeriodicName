@@ -146,8 +146,6 @@ var controls = {
 };
 var view = {
 	init : function() {
-		this.output = $("#output")[0];
-		this.genName = $("#generatedName")[0];
 		this.eval();
 		this.updateWith.clear();
 	},
@@ -157,10 +155,15 @@ var view = {
 	},
 	updateWith : {
 		notName : function() {
-			view.output.innerHTML = "This is not a valid name!"
+			//fill with logic to check that only valid characters are entered
 		},
 		notPossible : function() {
-			view.output.innerHTML = "Sorry, your name cannot be spelled. :("
+			var options = controls.holdOptions();
+			var firstObjects, secondObjects;
+			if (!controls.validateSpelling(options.first, view.userInput) &&
+				!controls.validateSpelling(options.second, view.userInput)) {
+				$("#output").append("<p>Sorry, that won't work!</p>");
+			}
 		},
 		spelledOptions : function() {
 			var options = controls.holdOptions();
@@ -207,7 +210,6 @@ var view = {
 		},
 		clear : function() {
 			$("#clear").on('click', function() {
-				console.log("the problem is elsewayre");
 				$("#generatedName").empty();
 			});
 		}
@@ -229,7 +231,9 @@ var view = {
 				console.log("second array after call to spellcheck   ", model.name.second);
 				controls.validateDiff(model.name.first, model.name.second);
 				console.log("grabPeriodicObjects test  ", controls.grabPeriodicObjects(model.name.second));
+				$("#output").empty();
 				view.updateWith.spelledOptions();
+				view.updateWith.notPossible();
 				controls.clearHolders();
 		});
 	}

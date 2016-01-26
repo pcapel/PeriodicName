@@ -1,4 +1,3 @@
-//cleaner vs of application
 var model = {
 	periodicTable : ["h", "he", 
 					 "li", "be", "b", "c", "n", "o", "f", "ne", 
@@ -11,176 +10,221 @@ var model = {
 	name : {
 		singles : [],
 		doubles : [],
-		possible : []
+		first : [],
+		second : []
 	}
 };
 var controls = {
 	init : function() {
 		view.init();
+		controls.counter = this.forCount();
+	},
+	forCount : function() {
+		var counter = 0;
+		return {
+			get : function() {
+				return counter;
+			},
+			increment : function(fold) {
+				return counter += 1 * fold;
+			},
+			reset : function() {
+				return counter = 0;
+			}
+		};
 	},
 	singlizeName : function(name) {
 		for (var i = 0; i < name.length; i++) {
-			model.name.singles.push([i, name.slice(i, i + 1)]);
+			model.name.singles.push(name.slice(i, i + 1));
 		}
 		return model.name.singles;
 	},
 	doublizeName : function(name) {
-		for (var i = 1; i < name.length; i++) {
-			model.name.doubles.push([[i - 1, i], model.name.singles[i - 1][1] + model.name.singles[i][1]]);
+		for (var i = 0; i < name.length - 1; i++) {
+			model.name.doubles.push(model.name.singles[i] + model.name.singles[i + 1]);
 		}
 		return model.name.doubles;
 	},
-	compareToTable : function(arrayOfSingles, arrayOfDoubles) {
+	compareToTable : function(arrayOfSingles, arrayOfDoubles) { 
 		var matches = {
 			singles : [],
 			doubles : []
-		};
+		}; 
 		for (var i = 0; i < arrayOfSingles.length; i++){
-			matches.singles.push([i, model.periodicTable.indexOf(arrayOfSingles[i][1])]);
+			matches.singles.push(model.periodicTable.indexOf(arrayOfSingles[i]));
 		}
 		for (var j = 0; j < arrayOfDoubles.length; j++) {
-			matches.doubles.push([[j, j + 1], model.periodicTable.indexOf(arrayOfDoubles[j][1])]);
+			matches.doubles.push(model.periodicTable.indexOf(arrayOfDoubles[j]));
 		}
+		matches.doubles.push(-1);
 		return matches;
 	},
-	arePossible : function(obj){
-		var singles = obj.singles;
-		var doubles = obj.doubles;
-		var possible = model.name.possible;
-		for (var i =0; i < singles.length; i++) {
-			if (singles[i][1] > -1) {
-				possible.push(singles[i]);
-			}
-		}
-		for (var j = 0; j < doubles.length; j++) {
-			if (doubles[j][1] > -1) {
-				possible.push(doubles[j])
-			}
-		}
-		return possible;
+	updateModel : function(object) { 
+		model.name.singles = object.singles;
+		model.name.doubles = object.doubles;
 	},
-	findHoles : function(array, string) {
-		var tracker = [];
-		if (array.length == string.length) {
-			return tracker;
+	spellCheck : { 
+		checkSingles : function(indexStart, callNumber) { 
+			var tracker = controls.counter.get(); 
+			var array = model.name.singles;
+			console.log("inside checkSingles, tracker is: ", tracker);
+			if (array[indexStart] > -1) {
+				model.name[callNumber].push(array[indexStart]);  
+				return this.checkSingles(indexStart + 1, callNumber); 
+			} else if (array[indexStart] == -1 && tracker <= 2) {
+				controls.counter.increment(1);
+				return this.checkDoubles(indexStart, callNumber); 
+			} else if (array[indexStart] == -1 && tracker == 2) { 
+				return false; 
+			}
+		},
+		 checkDoubles : function(indexStart, callNumber) {
+			var tracker = controls.counter.get();
+			var array = model.name.doubles;
+			console.log("inside checkDoubles, tracker is: ", tracker);
+			if (array[indexStart] > -1) {
+				model.name[callNumber].push(array[indexStart]); 
+				return this.checkDoubles(indexStart + 2, callNumber);
+			} else if (array[indexStart] == -1 && tracker <= 2) {
+				controls.counter.increment(1); 
+				return this.checkSingles(indexStart, callNumber);
+			} else if (array[indexStart] == -1 && tracker == 2) {
+				return false; 
+			}
+		}
+	},
+	holdValues : function(array) {
+		var holder = [];
+		for (var i = 0; i < array.length; i++) {
+			holder.push(model.periodicTable[array[i]]);
+		}
+		return holder;
+	},
+	holdOptions : function() {
+		return {
+			first : model.name.first,
+			second: model.name.second
+		}
+	},
+	validateSpelling : function(array, string) { 
+		var holder = this.holdValues(array);
+		holder = holder.join("");
+		console.log(holder);
+		if (holder == string) {
+			return true;
 		} else {
-			for (var i = array[0] - 1; i >= 0; i--) {
-				tracker.unshift(i);
-			}
-			for (var j = 0; j < array.length; j++) {
-				if (array[j] == array[j + 1] -1 || array[j + 1] == undefined) {
-
-				} else {
-					tracker.push(array[j + 1] -1);
-				}
-			}
-		}
-		return tracker;
-	},
-	checkHoles : function(array, array2) {
-		var canFillAt = [];
-		for (var i = 0; i < array2.length; i++) {
-			canFillAt.push(array[array.indexOf(array2[i][0])]);
-		}
-		return canFillAt;
-	},
-	legitimateFill : function(array, array2) {
-
-	},
-	canSpell : {
-		withSingles : function(array, string) {
-			var holder = [];
-			for (var i = 0; i < array.length; i++) {
-				if (array[i].length == 2 && typeof array[i][0] == "number") {
-					holder.push(array[i][0]);
-				}
-			}
-			//*
-			if (holder[0] > 0) {
-				return false;
-			}
-			if (string.length == holder.length){
-				return true;
-			} else {
-				return false;
-			}
-		},
-		withDoubles : function(array, string) {
-			var holder = []; 
-			var metaHolder = [];
-			for (var i = 0; i < array.length; i++) {
-				if (array[i].length == 2 && typeof array[i][0] == "object") {
-					holder.push(array[i][0]);
-				}
-			}
-			holder = Array.prototype.concat.apply([], holder);
-			holder = holder.filter(function(item, pos, ary) {
-         		return !pos || item != ary[pos - 1];
-     		});
-			if(holder.length == string.length){
-				return true;
-			} else {
-				return false;
-			}
-		},
-		mixedVariant : function(array, string) {
-			var holderSingle = [];
-			var holderDouble = [];
-			var holes;
-			for (var i = 0; i < array.length; i++) {
-				if (array[i].length == 2 && typeof array[i][0] == "number") {
-					holderSingle.push(array[i][0]);
-				}
-			}
-			for (var j = 0; j < array.length; j++) {
-				if (array[j].length == 2 && typeof array[j][0] == "object") {
-					holderDouble.push(array[j][0]);
-				}
-			}
-			holes = controls.findHoles(holderSingle, string);
-			console.log("Holes   ", holes);
-			console.log("Can Fill At  ", controls.checkHoles(holes, holderDouble));
-			console.log("    ", holderSingle, "     ", holderDouble);
+			return false;
 		}
 	},
-	grabSymbols : function(array) {
-		var matches = model.possibleMatches;
-		var table = model.periodicTable;
-		var symbols = model.symbols;
-		for (var i = 0; i < matches.length; i++) {
-			symbols.push(table[matches[i]]);
+	validateDiff : function(array1, array2) {
+		if (JSON.stringify(array1) === JSON.stringify(array2)) {
+			console.log("No difference");
+			return false;
+		} else {
+			console.log("differences are present");
+			return true;
 		}
+	},
+	grabPeriodicObjects : function(array) {
+		var holder = this.holdValues(array);
+		var periodicObjects = {};
+		for (var i = 0; i < holder.length; i++) {
+			periodicObjects[i] = periodicObject[holder[i]];
+		}
+		return periodicObjects;
 	},
 	clearHolders : function() {
 		model.name.singles = [];
 		model.name.doubles = [];
-		model.name.possible = [];
+		model.name.first = [];
+		model.name.second = [];
 	}
 };
 var view = {
 	init : function() {
-		this.output = $("#output");
-		this.genName = $("#generatedName");
 		this.eval();
+		this.updateWith.clear();
 	},
 	grabName : function() {
-		var name = $("#userName");
+		var name = $("#userName")[0];
 		this.userInput = name.value.toLowerCase();
+	},
+	updateWith : {
+		notName : function() {
+			//fill with logic to check that only valid characters are entered
+		},
+		notPossible : function() {
+			var options = controls.holdOptions();
+			var firstObjects, secondObjects;
+			if (!controls.validateSpelling(options.first, view.userInput) &&
+				!controls.validateSpelling(options.second, view.userInput)) {
+				$("#output").append("<p>Sorry, that won't work!</p>");
+			}
+		},
+		spelledOptions : function() {
+			var options = controls.holdOptions();
+			var firstObjects, secondObjects;
+			if (controls.validateDiff(options.first, options.second)) {
+				if (controls.validateSpelling(options.first, view.userInput)) {
+					firstObjects = controls.grabPeriodicObjects(options.first);
+					for (elements in firstObjects) {
+						$("#generatedName").append("<ul>" +
+													    "<li>" + firstObjects[elements].atomicNumber + "</li>" +
+													    "<li>" + firstObjects[elements].symbol + "</li>" +
+													    "<li>" + firstObjects[elements].name + "</li>" +
+														"<li>" + firstObjects[elements].atomicWeight + "</li>" +
+													"</ul>"
+							);
+					}
+					$("#generatedName").append("</br>");
+				} else if (controls.validateSpelling(options.second, view.userInput)) {
+					secondObjects = controls.grabPeriodicObjects(options.second);
+					for (elements in secondObjects) {
+						$("#generatedName").append("<ul>" +
+														"<li>" + secondObjects[elements].atomicNumber + "</li>" +
+													    "<li>" + secondObjects[elements].symbol + "</li>" +
+													    "<li>" + secondObjects[elements].name + "</li>" +
+													    "<li>" + secondObjects[elements].atomicWeight + "</li>" +
+													"</ul>"
+							);
+					}
+					$("#generatedName").append("</br>");
+				}
+			} else if (controls.validateSpelling(options.first, view.userInput)) {
+				firstObjects = controls.grabPeriodicObjects(options.first);
+					for (elements in firstObjects) {
+						$("#generatedName").append("<ul>" +
+														"<li>" + firstObjects[elements].atomicNumber + "</li>" +
+													    "<li>" + firstObjects[elements].symbol + "</li>" +
+													    "<li>" + firstObjects[elements].name + "</li>" +
+													    "<li>" + firstObjects[elements].atomicWeight + "</li>" +
+													"</ul>"
+							);
+					}
+					$("#generatedName").append("</br>");
+			}
+		},
+		clear : function() {
+			$("#clear").on('click', function() {
+				$("#generatedName").empty();
+			});
+		}
 	},
 	eval : function() {
 		$("#generate").on('click', function() {
-			view.grabName(); //grab the name each time in case it changes
+				view.grabName(); 
 				var singles = controls.singlizeName(view.userInput); 
 				var doubles = controls.doublizeName(view.userInput);
 				var matches = controls.compareToTable(singles, doubles);
-				console.log("Matches  ", matches);
-				var possible = controls.arePossible(matches);
-				console.log("Test of withSingles   ",controls.canSpell.withSingles(possible, view.userInput));
-				console.log("Test of withDoubles   ",controls.canSpell.withDoubles(possible, view.userInput));
-				console.log("Test of mixedVariant   ",controls.canSpell.mixedVariant(possible, view.userInput));
+				controls.updateModel(matches);
+				controls.counter.reset();
+				controls.spellCheck.checkDoubles(0, "second");
+				controls.validateDiff(model.name.first, model.name.second);
+				$("#output").empty();
+				view.updateWith.spelledOptions();
+				view.updateWith.notPossible();
 				controls.clearHolders();
 		});
 	}
-
 };
 controls.init();
