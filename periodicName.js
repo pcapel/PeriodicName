@@ -1,114 +1,208 @@
 //cleaner ver of application
-// periodicObject : {
-// 			   h : {
-//				symbol : "H"
-//		 		name : "Hydrogen",
-// 				atomicWeight : 1.008,
-// 				atomicNumber : 1
-// 			},
-// 				// he : {
-// 					symbol : ,
-// 					name : ,
-// 					atomicWeight : ,
-// 					atomicNumber : 
-// 				// },
-// 				// li : {
-// 					symbol : ,
-// 					name : ,
-// 					atomicWeight : ,
-// 					atomicNumber : 
-// 				// },
-// 				// be : {
-// 					symbol : ,
-// 					name : ,
-// 					atomicWeight : ,
-// 					atomicNumber : 
-// 				// },
-// 				// b : {
-// 					symbol : ,
-// 					name : ,
-// 					atomicWeight : ,
-// 					atomicNumber : 
-// 				// },
-// 				// c : {
-// 					symbol : ,
-// 					name : ,
-// 					atomicWeight : ,
-// 					atomicNumber : 
-// 				// },
-// 				// n : {
-// 					symbol : ,
-// 					name : ,
-// 					atomicWeight : ,
-// 					atomicNumber : 
-// 				// },
-// 				// o : {
-// 					symbol : ,
-// 					name : ,
-// 					atomicWeight : ,
-// 					atomicNumber : 
-// 				// },
-// 				// f : {
-// 					symbol : ,
-// 					name : ,
-// 					atomicWeight : ,
-// 					atomicNumber : 
-// 				// },
-// 				// ne : {
-// 					symbol : ,
-// 					name : ,
-// 					atomicWeight : ,
-// 					atomicNumber : 
-// 				// },
-// 				// na : {
-// 					symbol : ,
-// 					name : ,
-// 					atomicWeight : ,
-// 					atomicNumber : 
-// 				// },
-// 				// mg : {
-// 					symbol : ,
-// 					name : ,
-// 					atomicWeight : ,
-// 					atomicNumber : 
-// 				// },
-// 				// al {
-// 					symbol : ,
-// 					name : ,
-// 					atomicWeight : ,
-// 					atomicNumber : 
-// 				// },
-// 				// si {
-// 					symbol : ,
-// 					name : ,
-// 					atomicWeight : ,
-// 					atomicNumber : 
-// 				// },
-// 				// p : {
-// 					symbol : ,
-// 					name : ,
-// 					atomicWeight : ,
-// 					atomicNumber : 
-// 				// },
-// 				// s : {
-// 					symbol : ,
-// 					name : ,
-// 					atomicWeight : ,
-// 					atomicNumber : 
-// 				// },
-// 				// cl : {
-// 					symbol : ,
-// 					name : ,
-// 					atomicWeight : ,
-// 					atomicNumber : 
-// 				// },
-// 				// ar : {
-// 					symbol : ,
-// 					name : ,
-// 					atomicWeight : ,
-// 					atomicNumber : 
-// 				// },
-// //	 }
+periodicObject : {
+			   "h" : {
+				symbol : "H"
+		 		name : "Hydrogen",
+				atomicWeight : 1.008,
+				atomicNumber : 1
+			},
+				"he" : {
+					symbol : "He",
+					name : "Helium",
+					atomicWeight : ,
+					atomicNumber : 
+				},
+				"li" : {
+					symbol : "Li",
+					name : "Lithium",
+					atomicWeight : ,
+					atomicNumber : 
+				},
+				"be" : {
+					symbol : "Be",
+					name : "Beryllium",
+					atomicWeight : ,
+					atomicNumber : 
+				},
+				"b" : {
+					symbol : "B",
+					name : "Boron",
+					atomicWeight : ,
+					atomicNumber : 
+				},
+				"c" : {
+					symbol : "C",
+					name : "Carbon",
+					atomicWeight : ,
+					atomicNumber : 
+				},
+				"n" : {
+					symbol : "N",
+					name : "Nitrogen",
+					atomicWeight : ,
+					atomicNumber : 
+				},
+				"o" : {
+					symbol : "O",
+					name : "Oxygen",
+					atomicWeight : ,
+					atomicNumber : 
+				},
+				"f" : {
+					symbol : "F",
+					name : "Fluorine",
+					atomicWeight : ,
+					atomicNumber : 
+				},
+				"ne" : {
+					symbol : "Ne",
+					name : "Neon",
+					atomicWeight : ,
+					atomicNumber : 
+				},
+				"na" : {
+					symbol : "Na",
+					name : "Sodium",
+					atomicWeight : ,
+					atomicNumber : 
+				},
+				"mg" : {
+					symbol : "Mg",
+					name : "Magnesium",
+					atomicWeight : ,
+					atomicNumber : 
+				},
+				"al" {
+					symbol : "Al",
+					name : "Aluminium",
+					atomicWeight : ,
+					atomicNumber : 
+				},
+				"si" {
+					symbol : "Si",
+					name : "Silicon",
+					atomicWeight : ,
+					atomicNumber : 
+				},
+				"p" : {
+					symbol : "P",
+					name : "Phosphorus",
+					atomicWeight : ,
+					atomicNumber : 
+				},
+				"s" : {
+					symbol : "S",
+					name : "Sulfur",
+					atomicWeight : ,
+					atomicNumber : 
+				},
+				"cl" : {
+					symbol : "Cl",
+					name : "Chlorine",
+					atomicWeight : ,
+					atomicNumber : 
+				},
+				"ar" : {
+					symbol : "Ar",
+					name : "Argon",
+					atomicWeight : ,
+					atomicNumber : 
+				},
+				"k" : {
+
+				},
+				"ca" : {
+
+				},
+				"sc" : {
+
+				},
+				"ti" : {
+
+				},
+				"v" : {
+
+				},
+				"cr" : {
+
+				},
+				"mn" : {
+
+				},
+				"fe" : {
+
+				},
+				"co" : {
+
+				},
+				"ni" : {
+
+				},
+				"cu" : {
+
+				},
+				"zn" : {
+
+				},
+				"ga" : {
+
+				},
+				"ge" : {
+
+				},
+				"as" : {
+
+				},
+				"se" : {
+
+				},
+				"br" : {
+
+				},
+				"kr" : {
+
+				},
+				"rb" : {
+
+				},
+				"sr" : {
+
+				},
+				"y" : {
+
+				},
+				"zr" : {
+					
+				},
+				"nb" : {
+					
+				},
+				"mo" : {
+					
+				},
+				"tc" : {
+					
+				},
+				"ru" : {
+					
+				},
+				"rh" : {
+					
+				},
+				"pd" : {
+					
+				},
+				"ag" : {
+					
+				},
+				"cd" : {
+					
+				},
+				"in" : {
+					
+				},
+
+	 }
 //need to figure out a more consisten implementation for this...
 var Counter = function(set) {
 	this.count = set;
@@ -209,7 +303,6 @@ var controls = {
 		functionTracker : new Counter(0),
 		checkSingles : function(indexStart, callNumber) {
 		//logic
-			console.log("inside checkSingles: indexStart: ", indexStart, " callNumber: ", callNumber, " model.singles: ", model.name.singles);
 			var tracker = this.functionTracker.get();
 			var array = model.name.singles;
 			for (var i = indexStart; i < array.length; i += 2) {
@@ -227,7 +320,6 @@ var controls = {
 		},
 		 checkDoubles : function(indexStart, callNumber) {
 			//logic
-			console.log("inside checkDoubles: indexStart: ", indexStart, " callNumber: ", callNumber, " model.doubles: ", model.name.doubles);
 			var tracker = this.functionTracker.get();
 			var array = model.name.doubles;
 			for (var i = indexStart; i < array.length; i += 3) {
@@ -242,6 +334,20 @@ var controls = {
 					return this.checkSingles(indexStart - 1, callNumber); 
 				}
 			}
+		}
+	},
+	validateSpelling : function(array, string) {
+		var holder = [];
+		var symbol;
+		for (var i = 0; i < array.length; i++) {
+			holder.push(model.periodicTable[array[i]]);
+		}
+		holder = holder.join("_");
+		console.log(holder);
+		if (holder == string) {
+			return true;
+		} else {
+			return false;
 		}
 	},
 	//gets the symbols that are possible for spelling the name
@@ -294,6 +400,8 @@ var view = {
 				controls.spellCheck.checkDoubles(2, "second");
 				console.log("model.name.first after call to spellCheck   ", model.name.first);
 				console.log("model.name.second after call to spellCheck   ", model.name.second);
+				console.log(controls.validateSpelling(model.name.first, view.userInput));
+				console.log(controls.validateSpelling(model.name.second, view.userInput));
 				controls.clearHolders();
 		});
 	}
