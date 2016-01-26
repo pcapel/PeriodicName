@@ -42,7 +42,7 @@ var controls = {
 	//example Philip becomes [[0, p], [1, h], [2, i], [3, l], [4, i], [5, p]]
 	singlizeName : function(name) {
 		for (var i = 0; i < name.length; i++) {
-			model.name.singles.push(i, name.slice(i, i + 1));
+			model.name.singles.push(name.slice(i, i + 1));
 		}
 		return model.name.singles;
 	},
@@ -50,8 +50,8 @@ var controls = {
 	//the array format is [[index of first, index of second, string pair], etc] such that ph would be:
 	//[[0,1,"ph"]] thus conserving the positional information in the original string
 	doublizeName : function(name) {
-		for (var i = 1; i < (name.length * 2) - 1; i += 2) {
-			model.name.doubles.push((i-1)/2, Math.ceil(i/2), model.name.singles[i] + model.name.singles[i + 2]);
+		for (var i = 0; i < name.length - 1; i++) {
+			model.name.doubles.push(model.name.singles[i] + model.name.singles[i + 1]);
 		}
 		return model.name.doubles;
 	},
@@ -63,11 +63,11 @@ var controls = {
 			singles : [],
 			doubles : []
 		};
-		for (var i = 0; i < arrayOfSingles.length; i += 2){
-			matches.singles.push(arrayOfSingles[i], model.periodicTable.indexOf(arrayOfSingles[i + 1]));
+		for (var i = 0; i < arrayOfSingles.length; i++){
+			matches.singles.push(model.periodicTable.indexOf(arrayOfSingles[i]));
 		}
-		for (var j = 2; j < arrayOfDoubles.length; j+=3) {
-			matches.doubles.push(indexTracker, indexTracker + 1, model.periodicTable.indexOf(arrayOfDoubles[j]));
+		for (var j = 0; j < arrayOfDoubles.length; j++) {
+			matches.doubles.push(model.periodicTable.indexOf(arrayOfDoubles[j]));
 			indexTracker++;
 		}
 		return matches;
@@ -99,16 +99,16 @@ var controls = {
 		//logic
 			var tracker = controls.counter.get();
 			var array = model.name.singles;
-			for (var i = indexStart; i < array.length; i += 2) {
+			for (var i = indexStart; i < array.length; i++) {
 				if (array[i] > -1) {
 					model.name[callNumber].push(array[i]);
 					controls.counter.increment(1);
-					return this.checkSingles(indexStart + 2, callNumber);
+					return this.checkSingles(indexStart + 1, callNumber);
 				} else if (array[i] == -1 && tracker == 0) {
 					return false;
 				} else if (array[i] == -1) {
 					controls.counter.reset();
-					return this.checkDoubles(i + Math.ceil(i/2), callNumber);
+					return this.checkDoubles(i, callNumber);
 				}
 			}
 		},
@@ -116,16 +116,16 @@ var controls = {
 			//logic
 			var tracker = controls.counter.get();
 			var array = model.name.doubles;
-			for (var i = indexStart; i < array.length; i += 3) {
+			for (var i = indexStart; i < array.length; i++) {
 				if (array[i] > -1) {
 					model.name[callNumber].push(array[i]);
 					controls.counter.increment(1);
-					return this.checkSingles((i - Math.ceil(i/3)) + 4, callNumber);
+					return this.checkSingles(i + 2, callNumber);
 				} else if (array[i] == -1 && tracker == 0) {
 					return false;
 				} else if (array[i] == -1) {
 					controls.counter.reset();
-					return this.checkSingles(indexStart - 1, callNumber); 
+					return this.checkSingles(indexStart, callNumber); 
 				}
 			}
 		}
@@ -196,18 +196,20 @@ var view = {
 	},
 	eval : function() {
 		$("#generate").on('click', function() {
-			view.grabName(); //grab the name each time in case it changes
+				view.grabName(); //grab the name each time in case it changes
 				var singles = controls.singlizeName(view.userInput); 
 				var doubles = controls.doublizeName(view.userInput);
 				var matches = controls.compareToTable(singles, doubles);
+				console.log(singles);
+				console.log(doubles);
+				console.log(matches);
 				controls.updateModel(matches);
-				controls.spellCheck.checkSingles(1, "first");
-				controls.spellCheck.checkDoubles(2, "second");
-				console.log("model.name.first after call to spellCheck   ", model.name.first);
-				console.log("model.name.second after call to spellCheck   ", model.name.second);
-				console.log(controls.validateSpelling(model.name.first, view.userInput));
-				console.log(controls.validateSpelling(model.name.second, view.userInput));
-				console.log(controls.validateDiff(model.name.first, model.name.second));
+				console.log("model singles  ", model.name.singles);
+				console.log("model doubles  ", model.name.doubles);
+				controls.spellCheck.checkSingles(0, "first");
+				controls.spellCheck.checkDoubles(0, "second");
+				console.log("first array after call to spellcheck   ", model.name.first);
+				console.log("second array after call to spellcheck   ", model.name.second);
 				controls.clearHolders();
 		});
 	}
