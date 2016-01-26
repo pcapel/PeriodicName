@@ -177,20 +177,24 @@ var view = {
 				if (controls.validateSpelling(options.first, view.userInput)) {
 					firstObjects = controls.grabPeriodicObjects(options.first);
 					for (elements in firstObjects) {
-						$("#generatedName").append("<li>" + firstObjects[elements].atomicNumber + "</li>" +
-												   "<li>" + firstObjects[elements].symbol + "</li>" +
-												   "<li>" + firstObjects[elements].name + "</li>" +
-												   "<li>" + firstObjects[elements].atomicWeight + "</li>" 
+						$("#generatedName").append("<ul>" +
+													    "<li>" + firstObjects[elements].atomicNumber + "</li>" +
+													    "<li>" + firstObjects[elements].symbol + "</li>" +
+													    "<li>" + firstObjects[elements].name + "</li>" +
+														"<li>" + firstObjects[elements].atomicWeight + "</li>" +
+													"</ul>"
 							);
 						console.log("Being done, but not seen");
 					}
 				} else if (controls.validateSpelling(options.second, view.userInput)) {
 					secondObjects = controls.grabPeriodicObjects(options.second);
 					for (elements in secondObjects) {
-						$("#generatedName").append("<li>" + secondObjects[elements].atomicNumber + "</li>" +
-												   "<li>" + firstObjects[elements].symbol + "</li>" +
-												   "<li>" + firstObjects[elements].name + "</li>" +
-												   "<li>" + firstObjects[elements].atomicWeight + "</li>" 
+						$("#generatedName").append("<ul>" +
+														"<li>" + secondObjects[elements].atomicNumber + "</li>" +
+													    "<li>" + firstObjects[elements].symbol + "</li>" +
+													    "<li>" + firstObjects[elements].name + "</li>" +
+													    "<li>" + firstObjects[elements].atomicWeight + "</li>" +
+													"</ul>"
 							);
 						console.log("Being done, but not seen");
 					}
@@ -198,10 +202,12 @@ var view = {
 			} else if (controls.validateSpelling(options.first, view.userInput)) {
 				firstObjects = controls.grabPeriodicObjects(options.first);
 					for (elements in firstObjects) {
-						$("#generatedName").append("<li>" + firstObjects[elements].atomicNumber + "</li>" +
-												   "<li>" + firstObjects[elements].symbol + "</li>" +
-												   "<li>" + firstObjects[elements].name + "</li>" +
-												   "<li>" + firstObjects[elements].atomicWeight + "</li>"
+						$("#generatedName").append("<ul>" +
+														"<li>" + firstObjects[elements].atomicNumber + "</li>" +
+													    "<li>" + firstObjects[elements].symbol + "</li>" +
+													    "<li>" + firstObjects[elements].name + "</li>" +
+													    "<li>" + firstObjects[elements].atomicWeight + "</li>" +
+													"</ul>"
 							);
 						console.log("Being done, but not seen");
 					}
