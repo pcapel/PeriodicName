@@ -1,86 +1,86 @@
 periodicObject : {
 			   "h" : {
-				symbol : "H",
-		 		name : "Hydrogen",
-				atomicWeight : 1.008,
-				atomicNumber : 1
-			},
+					symbol : "H",
+		 			name : "Hydrogen",
+					atomicWeight : 1.0079,
+					atomicNumber : 1
+				},
 				"he" : {
 					symbol : "He",
 					name : "Helium",
-					atomicWeight : 4.003,
+					atomicWeight : 4.0026,
 					atomicNumber : 2 
 				},
 				"li" : {
 					symbol : "Li",
 					name : "Lithium",
-					atomicWeight : 6.94,
+					atomicWeight : 6.941,
 					atomicNumber : 3
 				},
 				"be" : {
 					symbol : "Be",
 					name : "Beryllium",
-					atomicWeight : 9.012,
+					atomicWeight : 9.0122,
 					atomicNumber : 4
 				},
 				"b" : {
 					symbol : "B",
 					name : "Boron",
-					atomicWeight : 10.81,
+					atomicWeight : 10.811,
 					atomicNumber : 5
 				},
 				"c" : {
 					symbol : "C",
 					name : "Carbon",
-					atomicWeight : ,
+					atomicWeight : 12.0107,
 					atomicNumber : 6
 				},
 				"n" : {
 					symbol : "N",
 					name : "Nitrogen",
-					atomicWeight : ,
+					atomicWeight : 14.007,
 					atomicNumber : 7
 				},
 				"o" : {
 					symbol : "O",
 					name : "Oxygen",
-					atomicWeight : ,
+					atomicWeight : 15.9994,
 					atomicNumber : 8
 				},
 				"f" : {
 					symbol : "F",
 					name : "Fluorine",
-					atomicWeight : ,
+					atomicWeight : 18.9984,
 					atomicNumber : 9
 				},
 				"ne" : {
 					symbol : "Ne",
 					name : "Neon",
-					atomicWeight : ,
+					atomicWeight : 20.1797,
 					atomicNumber : 10
 				},
 				"na" : {
 					symbol : "Na",
 					name : "Sodium",
-					atomicWeight : ,
+					atomicWeight : 22.9897,
 					atomicNumber : 11
 				},
 				"mg" : {
 					symbol : "Mg",
 					name : "Magnesium",
-					atomicWeight : ,
+					atomicWeight : 24.305,
 					atomicNumber : 12
 				},
 				"al" {
 					symbol : "Al",
 					name : "Aluminium",
-					atomicWeight : ,
+					atomicWeight : 26.9815,
 					atomicNumber : 13
 				},
 				"si" {
 					symbol : "Si",
 					name : "Silicon",
-					atomicWeight : ,
+					atomicWeight : 28.0855,
 					atomicNumber : 14
 				},
 				"p" : {
