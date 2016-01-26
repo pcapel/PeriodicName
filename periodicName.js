@@ -39,6 +39,21 @@ var model = {
 var controls = {
 	init : function() {
 		view.init();
+		controls.counter = this.forCount();
+	},
+	forCount : function() {
+		var counter = 0;
+		return {
+			get : function() {
+				return counter;
+			},
+			increment : function(fold) {
+				return counter += 1 * fold;
+			},
+			reset : function() {
+				return counter = 0;
+			}
+		};
 	},
 	//takes a string and returns an array containing arrays of [string_index, string] pairs
 	//example Philip becomes [[0, p], [1, h], [2, i], [3, l], [4, i], [5, p]]
@@ -97,37 +112,36 @@ var controls = {
 		model.name.doubles = object.doubles;
 	},
 	spellCheck : {
-		functionTracker : new Counter(0),
 		checkSingles : function(indexStart, callNumber) {
 		//logic
-			var tracker = this.functionTracker.get();
+			var tracker = controls.counter.get();
 			var array = model.name.singles;
 			for (var i = indexStart; i < array.length; i += 2) {
 				if (array[i] > -1) {
 					model.name[callNumber].push(array[i]);
-					this.functionTracker.increment();
+					controls.counter.increment(1);
 					return this.checkSingles(indexStart + 2, callNumber);
 				} else if (array[i] == -1 && tracker == 0) {
 					return false;
 				} else if (array[i] == -1) {
-					this.functionTracker.reset();
+					controls.counter.reset();
 					return this.checkDoubles(i + Math.ceil(i/2), callNumber);
 				}
 			}
 		},
 		 checkDoubles : function(indexStart, callNumber) {
 			//logic
-			var tracker = this.functionTracker.get();
+			var tracker = controls.counter.get();
 			var array = model.name.doubles;
 			for (var i = indexStart; i < array.length; i += 3) {
 				if (array[i] > -1) {
 					model.name[callNumber].push(array[i]);
-					this.functionTracker.increment();
+					controls.counter.increment(1);
 					return this.checkSingles((i - Math.ceil(i/3)) + 4, callNumber);
 				} else if (array[i] == -1 && tracker == 0) {
 					return false;
 				} else if (array[i] == -1) {
-					this.functionTracker.reset();
+					controls.counter.reset();
 					return this.checkSingles(indexStart - 1, callNumber); 
 				}
 			}
@@ -145,6 +159,17 @@ var controls = {
 			return true;
 		} else {
 			return false;
+		}
+	},
+	validateDiff : function(array1, array2) {
+		var holder1 = array1.join();
+		var holder2 = array2.join();
+		if (holder1 == holder2) {
+			console.log("No difference");
+			return false;
+		} else {
+			console.log("differences are present");
+			return true;
 		}
 	},
 	//gets the symbols that are possible for spelling the name
@@ -199,6 +224,7 @@ var view = {
 				console.log("model.name.second after call to spellCheck   ", model.name.second);
 				console.log(controls.validateSpelling(model.name.first, view.userInput));
 				console.log(controls.validateSpelling(model.name.second, view.userInput));
+				console.log(controls.validateDiff(model.name.first, model.name.second));
 				controls.clearHolders();
 		});
 	}
