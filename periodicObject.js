@@ -8,703 +8,703 @@ periodicObject : {
 				"he" : {
 					symbol : "He",
 					name : "Helium",
-					atomicWeight : ,
-					atomicNumber : 
+					atomicWeight : 4.003,
+					atomicNumber : 2 
 				},
 				"li" : {
 					symbol : "Li",
 					name : "Lithium",
-					atomicWeight : ,
-					atomicNumber : 
+					atomicWeight : 6.94,
+					atomicNumber : 3
 				},
 				"be" : {
 					symbol : "Be",
 					name : "Beryllium",
-					atomicWeight : ,
-					atomicNumber : 
+					atomicWeight : 9.012,
+					atomicNumber : 4
 				},
 				"b" : {
 					symbol : "B",
 					name : "Boron",
-					atomicWeight : ,
-					atomicNumber : 
+					atomicWeight : 10.81,
+					atomicNumber : 5
 				},
 				"c" : {
 					symbol : "C",
 					name : "Carbon",
 					atomicWeight : ,
-					atomicNumber : 
+					atomicNumber : 6
 				},
 				"n" : {
 					symbol : "N",
 					name : "Nitrogen",
 					atomicWeight : ,
-					atomicNumber : 
+					atomicNumber : 7
 				},
 				"o" : {
 					symbol : "O",
 					name : "Oxygen",
 					atomicWeight : ,
-					atomicNumber : 
+					atomicNumber : 8
 				},
 				"f" : {
 					symbol : "F",
 					name : "Fluorine",
 					atomicWeight : ,
-					atomicNumber : 
+					atomicNumber : 9
 				},
 				"ne" : {
 					symbol : "Ne",
 					name : "Neon",
 					atomicWeight : ,
-					atomicNumber : 
+					atomicNumber : 10
 				},
 				"na" : {
 					symbol : "Na",
 					name : "Sodium",
 					atomicWeight : ,
-					atomicNumber : 
+					atomicNumber : 11
 				},
 				"mg" : {
 					symbol : "Mg",
 					name : "Magnesium",
 					atomicWeight : ,
-					atomicNumber : 
+					atomicNumber : 12
 				},
 				"al" {
 					symbol : "Al",
 					name : "Aluminium",
 					atomicWeight : ,
-					atomicNumber : 
+					atomicNumber : 13
 				},
 				"si" {
 					symbol : "Si",
 					name : "Silicon",
 					atomicWeight : ,
-					atomicNumber : 
+					atomicNumber : 14
 				},
 				"p" : {
 					symbol : "P",
 					name : "Phosphorus",
 					atomicWeight : ,
-					atomicNumber : 
+					atomicNumber : 15
 				},
 				"s" : {
 					symbol : "S",
 					name : "Sulfur",
 					atomicWeight : ,
-					atomicNumber : 
+					atomicNumber : 16
 				},
 				"cl" : {
 					symbol : "Cl",
 					name : "Chlorine",
 					atomicWeight : ,
-					atomicNumber : 
+					atomicNumber : 17
 				},
 				"ar" : {
 					symbol : "Ar",
 					name : "Argon",
 					atomicWeight : ,
-					atomicNumber : 
+					atomicNumber : 18
 				},
 				"k" : {
 					symbol : "K",
 					name : "Potassium",
 					atomicWeight : ,
-					atomicNumber : 
+					atomicNumber : 19
 				},
 				"ca" : {
 					symbol : "Ca",
 					name : "Calcium",
 					atomicWeight : ,
-					atomicNumber : 
+					atomicNumber : 20
 				},
 				"sc" : {
 					symbol : "Sc",
 					name : "Scandium",
 					atomicWeight : ,
-					atomicNumber : 
+					atomicNumber : 21
 				},
 				"ti" : {
 					symbol : "Ti",
 					name : "Titanium",
 					atomicWeight : ,
-					atomicNumber : 
+					atomicNumber : 22
 				},
 				"v" : {
 					symbol : "V",
 					name : "Vanadium",
 					atomicWeight : ,
-					atomicNumber : 
+					atomicNumber : 23
 				},
 				"cr" : {
 					symbol : "Cr",
 					name : "Chromium",
 					atomicWeight : ,
-					atomicNumber : 
+					atomicNumber : 24
 				},
 				"mn" : {
 					symbol : "Mn",
 					name : "Manganese",
 					atomicWeight : ,
-					atomicNumber : 
+					atomicNumber : 25
 				},
 				"fe" : {
 					symbol : "Fe",
 					name : "Iron",
 					atomicWeight : ,
-					atomicNumber : 
+					atomicNumber : 26
 				},
 				"co" : {
 					symbol : "Co",
 					name : "Cobalt",
 					atomicWeight : ,
-					atomicNumber : 
+					atomicNumber : 27
 				},
 				"ni" : {
 					symbol : "Ni",
 					name : "Nickel",
 					atomicWeight : ,
-					atomicNumber : 
+					atomicNumber : 28
 				},
 				"cu" : {
 					symbol : "Cu",
 					name : "Copper",
 					atomicWeight : ,
-					atomicNumber : 
+					atomicNumber : 29
 				},
 				"zn" : {
 					symbol : "Zn",
 					name : "Zinc",
 					atomicWeight : ,
-					atomicNumber : 
+					atomicNumber : 30
 				},
 				"ga" : {
 					symbol : "Ga",
 					name : "Gallium",
 					atomicWeight : ,
-					atomicNumber : 
+					atomicNumber : 31
 				},
 				"ge" : {
 					symbol : "Ge",
 					name : "Germanium",
 					atomicWeight : ,
-					atomicNumber : 
+					atomicNumber : 32
 				},
 				"as" : {
 					symbol : "As",
 					name : "Arsenic",
 					atomicWeight : ,
-					atomicNumber : 
+					atomicNumber : 33
 				},
 				"se" : {
 					symbol : "Se",
 					name : "Selenium",
 					atomicWeight : ,
-					atomicNumber : 
+					atomicNumber : 34
 				},
 				"br" : {
 					symbol : "Br",
 					name : "Bromine",
 					atomicWeight : ,
-					atomicNumber : 
+					atomicNumber : 35
 				},
 				"kr" : {
 					symbol : "Kr",
 					name : "Krypton",
 					atomicWeight : ,
-					atomicNumber : 
+					atomicNumber : 36
 				},
 				"rb" : {
 					symbol : "Rb",
 					name : "Rubidium",
 					atomicWeight : ,
-					atomicNumber : 
+					atomicNumber : 37
 				},
 				"sr" : {
 					symbol : "Sr",
 					name : "Strontium",
 					atomicWeight : ,
-					atomicNumber : 
+					atomicNumber : 38
 				},
 				"y" : {
 					symbol : "Y",
 					name : "Yttrium",
 					atomicWeight : ,
-					atomicNumber : 
+					atomicNumber : 39
 				},
 				"zr" : {
 					symbol : "Zr",
 					name : "Zirconium",
 					atomicWeight : ,
-					atomicNumber : 
+					atomicNumber : 40
 				},
 				"nb" : {
 					symbol : "Nb",
 					name : "Niobium",
 					atomicWeight : ,
-					atomicNumber : 
+					atomicNumber : 41
 				},
 				"mo" : {
 					symbol : "Mo",
 					name : "Molybdenum",
 					atomicWeight : ,
-					atomicNumber : 
+					atomicNumber : 42
 				},
 				"tc" : {
 					symbol : "Tc",
 					name : "Technetium",
 					atomicWeight : ,
-					atomicNumber : 
+					atomicNumber : 43
 				},
 				"ru" : {
 					symbol : "Ru",
 					name : "Ruthenium",
 					atomicWeight : ,
-					atomicNumber : 
+					atomicNumber : 44
 				},
 				"rh" : {
 					symbol : "Rh",
 					name : "Rhodium",
 					atomicWeight : ,
-					atomicNumber : 
+					atomicNumber : 45
 				},
 				"pd" : {
 					symbol : "Pd",
 					name : "Palladium",
 					atomicWeight : ,
-					atomicNumber : 
+					atomicNumber : 46
 				},
 				"ag" : {
 					symbol : "Ag",
 					name : "Silver",
 					atomicWeight : ,
-					atomicNumber : 
+					atomicNumber : 47
 				},
 				"cd" : {
 					symbol : "Cd",
 					name : "Cadmium",
 					atomicWeight : ,
-					atomicNumber : 
+					atomicNumber : 48
 				},
 				"in" : {
 					symbol : "In",
 					name : "Indium",
 					atomicWeight : ,
-					atomicNumber : 
+					atomicNumber : 49
 				},
 				"sn" : {
 					symbol : "Sn",
 					name : "Tin",
 					atomicWeight : ,
-					atomicNumber : 
+					atomicNumber : 50
 				},
 				"sb" : {
 					symbol : "Sb",
 					name : "Antimony",
 					atomicWeight : ,
-					atomicNumber : 
+					atomicNumber : 51
 				},
 				"te" : {
 					symbol : "Te",
 					name : "Tellurium",
 					atomicWeight : ,
-					atomicNumber : 
+					atomicNumber : 52
 				},
 				"i" :  {
 					symbol : "I",
 					name : "Iodine",
 					atomicWeight : ,
-					atomicNumber : 
+					atomicNumber : 53
 				},
 				"xe" : {
 					symbol : "Xe",
 					name : "Xenon",
 					atomicWeight : ,
-					atomicNumber : 
+					atomicNumber : 54
 				},
 				"cs" : {
 					symbol : "Cs",
 					name : "Caesium",
 					atomicWeight : ,
-					atomicNumber : 
+					atomicNumber : 55
 				},
 				"ba" : {
 					symbol : "Ba",
 					name : "Barium",
 					atomicWeight : ,
-					atomicNumber : 
+					atomicNumber : 56
 				},
 				"la" : {
 					symbol : "La",
 					name : "Lanthanum",
 					atomicWeight : ,
-					atomicNumber : 
+					atomicNumber : 57
 				},
 				"ce" : {
 					symbol : "Ce",
 					name : "Cerium",
 					atomicWeight : ,
-					atomicNumber : 
+					atomicNumber : 58
 				},
 				"pr" : {
 					symbol : "Pr",
 					name : "Praseodymium",
 					atomicWeight : ,
-					atomicNumber : 
+					atomicNumber : 59
 				},
 				"nd" : {
 					symbol : "Nd",
 					name : "Neodymium",
 					atomicWeight : ,
-					atomicNumber : 
+					atomicNumber : 60
 				},
 				"pm" : {
 					symbol : "Pm",
 					name : "Promethium",
 					atomicWeight : ,
-					atomicNumber : 
+					atomicNumber : 61
 				},
 				"sm" : {
 					symbol : "Sm",
 					name : "Samarium",
 					atomicWeight : ,
-					atomicNumber : 
+					atomicNumber : 62
 				},
 				"eu" : {
 					symbol : "Eu",
 					name : "Europium",
 					atomicWeight : ,
-					atomicNumber : 
+					atomicNumber : 63
 				},
 				"gd" : {
 					symbol : "Gd",
 					name : "Gadolinium",
 					atomicWeight : ,
-					atomicNumber : 
+					atomicNumber : 64
 				},
 				"tb" : {
 					symbol : "Tb",
 					name : "Terbium",
 					atomicWeight : ,
-					atomicNumber : 
+					atomicNumber : 65
 				},
 				"dy" : {
 					symbol : "Dy",
 					name : "Dysprosium",
 					atomicWeight : ,
-					atomicNumber : 
+					atomicNumber : 66
 				},
 				"ho" : {
 					symbol : "Ho",
 					name : "Holmium",
 					atomicWeight : ,
-					atomicNumber : 
+					atomicNumber : 67
 				},
 				"er" : {
 					symbol : "Er",
 					name : "Erbium",
 					atomicWeight : ,
-					atomicNumber : 
+					atomicNumber : 68
 				},
 				"tm" : {
 					symbol : "Tm",
 					name : "Thulium",
 					atomicWeight : ,
-					atomicNumber : 
+					atomicNumber : 69
 				},
 				"yb" : {
 					symbol : "Yb",
 					name : "Ytterbium",
 					atomicWeight : ,
-					atomicNumber : 
+					atomicNumber : 70
 				},
 				"lu" : {
 					symbol : "Lu",
 					name : "Lutetium",
 					atomicWeight : ,
-					atomicNumber : 
+					atomicNumber : 71
 				},
 				"hf" : {
 					symbol : "Hf",
 					name : "Hafnium",
 					atomicWeight : ,
-					atomicNumber : 
+					atomicNumber : 72
 				},
 				"ta" : {
 					symbol : "Ta",
 					name : "Tantalum",
 					atomicWeight : ,
-					atomicNumber : 
+					atomicNumber : 73
 				},
 				"w" :  {
 					symbol : "W",
 					name : "Tungsten",
 					atomicWeight : ,
-					atomicNumber : 
+					atomicNumber : 74
 				},
 				"re" : {
 					symbol : "Re",
 					name : "Rhenium",
 					atomicWeight : ,
-					atomicNumber : 
+					atomicNumber : 75
 				},
 				"os" : {
 					symbol : "Os",
 					name : "Osmium",
 					atomicWeight : ,
-					atomicNumber : 
+					atomicNumber : 76
 				},
 				"ir" : {
 					symbol : "Ir",
 					name : "Iridium",
 					atomicWeight : ,
-					atomicNumber : 
+					atomicNumber : 77
 				},
 				"pt" : {
 					symbol : "Pt",
 					name : "Platinum",
 					atomicWeight : ,
-					atomicNumber : 
+					atomicNumber : 78
 				},
 				"au" : {
 					symbol : "Au",
 					name : "Gold",
 					atomicWeight : ,
-					atomicNumber : 
+					atomicNumber : 79
 				},
 				"hg" : {
 					symbol : "Hg",
 					name : "Mercury",
 					atomicWeight : ,
-					atomicNumber : 
+					atomicNumber : 80
 				},
 				"tl" : {
 					symbol : "Tl",
 					name : "Thallium",
 					atomicWeight : ,
-					atomicNumber : 
+					atomicNumber : 81
 				},
 				"pb" : {
 					symbol : "Pb",
 					name : "Lead",
 					atomicWeight : ,
-					atomicNumber : 
+					atomicNumber : 82
 				},
 				"bi" : {
 					symbol : "Bi",
 					name : "Bismuth",
 					atomicWeight : ,
-					atomicNumber : 
+					atomicNumber : 83
 				},
 				"po" : {
 					symbol : "Po",
 					name : "Polonium",
 					atomicWeight : ,
-					atomicNumber : 
+					atomicNumber : 84
 				},
 				"at" : {
 					symbol : "At",
 					name : "Astatine",
 					atomicWeight : ,
-					atomicNumber : 
+					atomicNumber : 85
 				},
 				"rn" : {
 					symbol : "Rn",
 					name : "Radon",
 					atomicWeight : ,
-					atomicNumber : 
+					atomicNumber : 86
 				},
 				"fr" : {
 					symbol : "Fr",
 					name : "Francium",
 					atomicWeight : ,
-					atomicNumber : 
+					atomicNumber : 87
 				},
 				"ra" : {
 					symbol : "Ra",
 					name : "Radium",
 					atomicWeight : ,
-					atomicNumber : 
+					atomicNumber : 88
 				},
 				"ac" : {
 					symbol : "Ac",
 					name : "Actinium",
 					atomicWeight : ,
-					atomicNumber : 
+					atomicNumber : 89
 				},
 				"th" : {
 					symbol : "Th",
 					name : "Thorium",
 					atomicWeight : ,
-					atomicNumber : 
+					atomicNumber : 90
 				},
 				"pa" : {
 					symbol : "Pa",
 					name : "Protactinium",
 					atomicWeight : ,
-					atomicNumber : 
+					atomicNumber : 91
 				},
 				"u" :  {
 					symbol : "U",
 					name : "Uranium",
 					atomicWeight : ,
-					atomicNumber : 
+					atomicNumber : 92
 				},
 				"np" : {
 					symbol : "Np",
 					name : "Neptunium",
 					atomicWeight : ,
-					atomicNumber : 
+					atomicNumber : 93
 				},
 				"pu" : {
 					symbol : "Pu",
 					name : "Plutonium",
 					atomicWeight : ,
-					atomicNumber : 
+					atomicNumber : 94
 				},
 				"am" : {
 					symbol : "Am",
 					name : "Americium",
 					atomicWeight : ,
-					atomicNumber : 
+					atomicNumber : 95
 				},
 				"cm" : {
 					symbol : "Cm",
 					name : "Curium",
 					atomicWeight : ,
-					atomicNumber : 
+					atomicNumber : 96
 				},
 				"bk" : {
 					symbol : "Bk",
 					name : "Berkelium",
 					atomicWeight : ,
-					atomicNumber : 
+					atomicNumber : 97
 				},
 				"cf" : {
 					symbol : "Cf",
 					name : "Californium",
 					atomicWeight : ,
-					atomicNumber : 
+					atomicNumber : 98
 				},
 				"es" : {
 					symbol : "Es",
 					name : "Einsteinium",
 					atomicWeight : ,
-					atomicNumber : 
+					atomicNumber : 99
 				},
 				"fm" : {
 					symbol : "Fm",
 					name : "Fermium",
 					atomicWeight : ,
-					atomicNumber : 
+					atomicNumber : 100
 				},
 				"md" : {
 					symbol : "Md",
 					name : "Mendelevium",
 					atomicWeight : ,
-					atomicNumber : 
+					atomicNumber : 101
 				},
 				"no" : {
 					symbol : "No",
 					name : "Nobelium",
 					atomicWeight : ,
-					atomicNumber : 
+					atomicNumber : 102
 				},
 				"lr" : {
 					symbol : "Lr",
 					name : "Lawrencium",
 					atomicWeight : ,
-					atomicNumber : 
+					atomicNumber : 103
 				},
 				"rf" : {
 					symbol : "Rf",
 					name : "Rutherfordium",
 					atomicWeight : ,
-					atomicNumber : 
+					atomicNumber : 104
 				},
 				"db" : {
 					symbol : "Db",
 					name : "Dubnium",
 					atomicWeight : ,
-					atomicNumber : 
+					atomicNumber : 105
 				},
 				"sg" : {
 					symbol : "Sg",
 					name : "Seaborgium",
 					atomicWeight : ,
-					atomicNumber : 
+					atomicNumber : 106
 				},
 				"bh" : {
 					symbol : "Bh",
 					name : "Bohrium",
 					atomicWeight : ,
-					atomicNumber : 
+					atomicNumber : 107
 				},
 				"hs" : {
 					symbol : "Hs",
 					name : "Hassium",
 					atomicWeight : ,
-					atomicNumber : 
+					atomicNumber : 108
 				},
 				"mt" : {
 					symbol : "Mt",
 					name : "Meitnerium",
 					atomicWeight : ,
-					atomicNumber : 
+					atomicNumber : 109
 				},
 				"ds" : {
 					symbol : "Ds",
 					name : "Darmstadtium",
 					atomicWeight : ,
-					atomicNumber : 
+					atomicNumber : 110
 				},
 				"rg" : {
 					symbol : "Rg",
 					name : "Roentgenium",
 					atomicWeight : ,
-					atomicNumber : 
+					atomicNumber : 111
 				},
 				"cn" : {
 					symbol : "Cn",
 					name : "Copernicium",
 					atomicWeight : ,
-					atomicNumber : 
+					atomicNumber : 112
 				},
 				"uut" :{
 					symbol : "Uut",
 					name : "Ununtrium",
 					atomicWeight : ,
-					atomicNumber : 
+					atomicNumber : 113
 				},
 				"fl" : {
 					symbol : "Fl",
 					name : "Flerovium",
 					atomicWeight : ,
-					atomicNumber : 
+					atomicNumber : 114
 				},
 				"uup" :{
 					symbol : "Uup",
 					name : "Ununpentium",
 					atomicWeight : ,
-					atomicNumber : 
+					atomicNumber : 115
 				},
 				"lv" : {
 					symbol : "Lv",
 					name : "Livermorium",
 					atomicWeight : ,
-					atomicNumber : 
+					atomicNumber : 116
 				},
 				"uus" :{
 					symbol : "Uus",
 					name : "Ununseptium",
 					atomicWeight : ,
-					atomicNumber : 
+					atomicNumber : 117
 				},
 				"uuo" :{
 					symbol : "Uuo",
 					name : "Ununoctium",
 					atomicWeight : ,
-					atomicNumber : 
+					atomicNumber : 118
 				},
 	 }
