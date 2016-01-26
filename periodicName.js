@@ -104,6 +104,12 @@ var controls = {
 		}
 		return holder;
 	},
+	holdOptions : function() {
+		return {
+			first : model.name.first,
+			second: model.name.second
+		}
+	}
 	validateSpelling : function(array, string) { //returns a boolean for a check against the string
 		var holder = this.holdValues(array);
 		var symbol;
@@ -160,7 +166,10 @@ var view = {
 			view.output.innerHTML = "Sorry, your name cannot be spelled. :("
 		},
 		spelledOptions : function() {
-			//view.output.innerHTML = 
+			var options = controls.holdOptions();
+			if (validateDiff(options.first, options.second)) {
+				if (validateSpelling)
+			}
 		}
 	},
 	eval : function() {
