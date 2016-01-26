@@ -149,6 +149,7 @@ var view = {
 		this.output = $("#output")[0];
 		this.genName = $("#generatedName")[0];
 		this.eval();
+		this.updateWith.clear();
 	},
 	grabName : function() {
 		var name = $("#userName")[0];
@@ -176,6 +177,7 @@ var view = {
 													"</ul>"
 							);
 					}
+					$("#generatedName").append("</br>");
 				} else if (controls.validateSpelling(options.second, view.userInput)) {
 					secondObjects = controls.grabPeriodicObjects(options.second);
 					for (elements in secondObjects) {
@@ -187,6 +189,7 @@ var view = {
 													"</ul>"
 							);
 					}
+					$("#generatedName").append("</br>");
 				}
 			} else if (controls.validateSpelling(options.first, view.userInput)) {
 				firstObjects = controls.grabPeriodicObjects(options.first);
@@ -199,7 +202,14 @@ var view = {
 													"</ul>"
 							);
 					}
+					$("#generatedName").append("</br>");
 			}
+		},
+		clear : function() {
+			$("#clear").on('click', function() {
+				console.log("the problem is elsewayre");
+				$("#generatedName").empty();
+			});
 		}
 	},
 	eval : function() {
