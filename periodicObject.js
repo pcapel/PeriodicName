@@ -504,206 +504,206 @@ periodicObject : {
 					atomicNumber : 
 				},
 				"at" : {
-					symbol : "",
-					name : "",
+					symbol : "At",
+					name : "Astatine",
 					atomicWeight : ,
 					atomicNumber : 
 				},
 				"rn" : {
-					symbol : "",
-					name : "",
+					symbol : "Rn",
+					name : "Radon",
 					atomicWeight : ,
 					atomicNumber : 
 				},
 				"fr" : {
-					symbol : "",
-					name : "",
+					symbol : "Fr",
+					name : "Francium",
 					atomicWeight : ,
 					atomicNumber : 
 				},
 				"ra" : {
-					symbol : "",
-					name : "",
+					symbol : "Ra",
+					name : "Radium",
 					atomicWeight : ,
 					atomicNumber : 
 				},
 				"ac" : {
-					symbol : "",
-					name : "",
+					symbol : "Ac",
+					name : "Actinium",
 					atomicWeight : ,
 					atomicNumber : 
 				},
 				"th" : {
-					symbol : "",
-					name : "",
+					symbol : "Th",
+					name : "Thorium",
 					atomicWeight : ,
 					atomicNumber : 
 				},
 				"pa" : {
-					symbol : "",
-					name : "",
+					symbol : "Pa",
+					name : "Protactinium",
 					atomicWeight : ,
 					atomicNumber : 
 				},
 				"u" :  {
-					symbol : "",
-					name : "",
+					symbol : "U",
+					name : "Uranium",
 					atomicWeight : ,
 					atomicNumber : 
 				},
 				"np" : {
-					symbol : "",
-					name : "",
+					symbol : "Np",
+					name : "Neptunium",
 					atomicWeight : ,
 					atomicNumber : 
 				},
 				"pu" : {
-					symbol : "",
-					name : "",
+					symbol : "Pu",
+					name : "Plutonium",
 					atomicWeight : ,
 					atomicNumber : 
 				},
 				"am" : {
-					symbol : "",
-					name : "",
+					symbol : "Am",
+					name : "Americium",
 					atomicWeight : ,
 					atomicNumber : 
 				},
 				"cm" : {
-					symbol : "",
-					name : "",
+					symbol : "Cm",
+					name : "Curium",
 					atomicWeight : ,
 					atomicNumber : 
 				},
 				"bk" : {
-					symbol : "",
-					name : "",
+					symbol : "Bk",
+					name : "Berkelium",
 					atomicWeight : ,
 					atomicNumber : 
 				},
 				"cf" : {
-					symbol : "",
-					name : "",
+					symbol : "Cf",
+					name : "Californium",
 					atomicWeight : ,
 					atomicNumber : 
 				},
 				"es" : {
-					symbol : "",
-					name : "",
+					symbol : "Es",
+					name : "Einsteinium",
 					atomicWeight : ,
 					atomicNumber : 
 				},
 				"fm" : {
-					symbol : "",
-					name : "",
+					symbol : "Fm",
+					name : "Fermium",
 					atomicWeight : ,
 					atomicNumber : 
 				},
 				"md" : {
-					symbol : "",
-					name : "",
+					symbol : "Md",
+					name : "Mendelevium",
 					atomicWeight : ,
 					atomicNumber : 
 				},
 				"no" : {
-					symbol : "",
-					name : "",
+					symbol : "No",
+					name : "Nobelium",
 					atomicWeight : ,
 					atomicNumber : 
 				},
 				"lr" : {
-					symbol : "",
-					name : "",
+					symbol : "Lr",
+					name : "Lawrencium",
 					atomicWeight : ,
 					atomicNumber : 
 				},
 				"rf" : {
-					symbol : "",
-					name : "",
+					symbol : "Rf",
+					name : "Rutherfordium",
 					atomicWeight : ,
 					atomicNumber : 
 				},
 				"db" : {
-					symbol : "",
-					name : "",
+					symbol : "Db",
+					name : "Dubnium",
 					atomicWeight : ,
 					atomicNumber : 
 				},
 				"sg" : {
-					symbol : "",
-					name : "",
+					symbol : "Sg",
+					name : "Seaborgium",
 					atomicWeight : ,
 					atomicNumber : 
 				},
 				"bh" : {
-					symbol : "",
-					name : "",
+					symbol : "Bh",
+					name : "Bohrium",
 					atomicWeight : ,
 					atomicNumber : 
 				},
 				"hs" : {
-					symbol : "",
-					name : "",
+					symbol : "Hs",
+					name : "Hassium",
 					atomicWeight : ,
 					atomicNumber : 
 				},
 				"mt" : {
-					symbol : "",
-					name : "",
+					symbol : "Mt",
+					name : "Meitnerium",
 					atomicWeight : ,
 					atomicNumber : 
 				},
 				"ds" : {
-					symbol : "",
-					name : "",
+					symbol : "Ds",
+					name : "Darmstadtium",
 					atomicWeight : ,
 					atomicNumber : 
 				},
 				"rg" : {
-					symbol : "",
-					name : "",
+					symbol : "Rg",
+					name : "Roentgenium",
 					atomicWeight : ,
 					atomicNumber : 
 				},
 				"cn" : {
-					symbol : "",
-					name : "",
+					symbol : "Cn",
+					name : "Copernicium",
 					atomicWeight : ,
 					atomicNumber : 
 				},
 				"uut" :{
-					symbol : "",
-					name : "",
+					symbol : "Uut",
+					name : "Ununtrium",
 					atomicWeight : ,
 					atomicNumber : 
 				},
 				"fl" : {
-					symbol : "",
-					name : "",
+					symbol : "Fl",
+					name : "Flerovium",
 					atomicWeight : ,
 					atomicNumber : 
 				},
 				"uup" :{
-					symbol : "",
-					name : "",
+					symbol : "Uup",
+					name : "Ununpentium",
 					atomicWeight : ,
 					atomicNumber : 
 				},
 				"lv" : {
-					symbol : "",
-					name : "",
+					symbol : "Lv",
+					name : "Livermorium",
 					atomicWeight : ,
 					atomicNumber : 
 				},
 				"uus" :{
-					symbol : "",
-					name : "",
+					symbol : "Uus",
+					name : "Ununseptium",
 					atomicWeight : ,
 					atomicNumber : 
 				},
 				"uuo" :{
-					symbol : "",
-					name : "",
+					symbol : "Uuo",
+					name : "Ununoctium",
 					atomicWeight : ,
 					atomicNumber : 
 				},
