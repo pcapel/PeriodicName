@@ -200,7 +200,6 @@ var view = {
 				console.log(controls.validateSpelling(model.name.first, view.userInput));
 				console.log(controls.validateSpelling(model.name.second, view.userInput));
 				controls.clearHolders();
-				console.log(periodicObject["h"].name);
 		});
 	}
 
