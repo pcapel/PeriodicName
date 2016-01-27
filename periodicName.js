@@ -172,7 +172,7 @@ var view = {
 			if (controls.validateDiff(options.first, options.second)) {
 				if (controls.validateSpelling(options.first, view.userInput)) {
 					firstObjects = controls.grabPeriodicObjects(options.first);
-					for (elements in firstObjects) {
+					for (var elements in firstObjects) {
 						$("#generatedName").append("<ul>" +
 													    "<li>" + firstObjects[elements].atomicNumber + "</li>" +
 													    "<li>" + firstObjects[elements].symbol + "</li>" +
@@ -184,7 +184,7 @@ var view = {
 					$("#generatedName").append("</br>");
 				} else if (controls.validateSpelling(options.second, view.userInput)) {
 					secondObjects = controls.grabPeriodicObjects(options.second);
-					for (elements in secondObjects) {
+					for (var elements in secondObjects) {
 						$("#generatedName").append("<ul>" +
 														"<li>" + secondObjects[elements].atomicNumber + "</li>" +
 													    "<li>" + secondObjects[elements].symbol + "</li>" +
@@ -197,7 +197,7 @@ var view = {
 				}
 			} else if (controls.validateSpelling(options.first, view.userInput)) {
 				firstObjects = controls.grabPeriodicObjects(options.first);
-					for (elements in firstObjects) {
+					for (var elements in firstObjects) {
 						$("#generatedName").append("<ul>" +
 														"<li>" + firstObjects[elements].atomicNumber + "</li>" +
 													    "<li>" + firstObjects[elements].symbol + "</li>" +
