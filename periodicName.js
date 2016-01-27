@@ -6,7 +6,7 @@ var model = {
 					 "k", "ca", "sc", "ti", "v", "cr", "mn", "fe", "co", "ni", "cu", "zn", "ga", "ge", "as", "se", "br", "kr", 
 					 "rb", "sr", "y", "zr", "nb", "mo", "tc", "ru", "rh", "pd", "ag", "cd", "in", "sn", "sb", "te", "i", "xe", 
 					 "cs", "ba", "la", "ce", "pr", "nd", "pm", "sm", "eu", "gd", "tb", "dy", "ho", "er", "tm", "yb", "lu", "hf", "ta", "w", "re", "os", "ir", "pt", "au", "hg", "ti", "pb", "bi", "po", "at", "rn",
-					 "fr", "ra", "ac", "th", "pa", "u", "np", "pu", "am", "cm", "bk", "cf", "es", "fm", "md", "no", "lr", "rf", "db", "sg", "bh", "hs", "mt", "ds", "rg", "cn", "uut", "fl", "uup", "lv", "uus", "uuo"
+					 "fr", "ra", "ac", "th", "pa", "u", "np", "pu", "am", "cm", "bk", "cf", "es", "fm", "md", "no", "lr", "rf", "db", "sg", "bh", "hs", "mt", "ds", "rg", "cn", "uut", "fl", "uup", "lv", "uus", "uuo",
 					],
 	name : {
 		singles : [],//gets updated to hold, single letters, then their matching indices from periodic table
@@ -148,6 +148,7 @@ var view = {
 	init : function() {
 		this.eval();
 		this.updateWith.clear();
+		this.updateWith.spelledOptions();
 	},
 	grabName : function() {
 		var name = $("#userName")[0];
@@ -178,7 +179,7 @@ var view = {
 													    "<li>" + firstObjects[elements].name + "</li>" +
 														"<li>" + firstObjects[elements].atomicWeight + "</li>" +
 													"</ul>"
-							);
+							).fadeIn("slow");
 					}
 					$("#generatedName").append("</br>");
 				} else if (controls.validateSpelling(options.second, view.userInput)) {
@@ -190,7 +191,7 @@ var view = {
 													    "<li>" + secondObjects[elements].name + "</li>" +
 													    "<li>" + secondObjects[elements].atomicWeight + "</li>" +
 													"</ul>"
-							);
+							).fadeIn("slow");
 					}
 					$("#generatedName").append("</br>");
 				}
@@ -203,14 +204,14 @@ var view = {
 													    "<li>" + firstObjects[elements].name + "</li>" +
 													    "<li>" + firstObjects[elements].atomicWeight + "</li>" +
 													"</ul>"
-							);
+							).fadeIn("slow");
 					}
 					$("#generatedName").append("</br>");
 			}
 		},
 		clear : function() {
 			$("#clear").on('click', function() {
-				$("#generatedName").empty();
+				$("#generatedName").fadeOut().empty();
 			});
 		}
 	},

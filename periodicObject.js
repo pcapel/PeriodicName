@@ -707,4 +707,28 @@ var periodicObject = {
 					atomicWeight : 294,
 					atomicNumber : 118
 				},
+				"a" : {
+		        	symbol : "A",
+        		    name : "No Element",
+		            atomicWeight : "N/A",
+        		    atomicNumber : "*"
+	        	},
+    		    "r" : {
+        			symbol : "R",
+        		    name : "No Element",
+        		    atomicWeight : "N/A",
+        		    atomicNumber : "*"
+       			 },
+       			"j" : {
+       			 	symbol : "J",
+        		    name : "No Element",
+        		    atomicWeight : "N/A",
+        		    atomicNumber : "*"
+       			 },
+       			"l" : {
+       			 	symbol : "L",
+        		    name : "No Element",
+        		    atomicWeight : "N/A",
+        		    atomicNumber : "*"
+       			 }
 	 }

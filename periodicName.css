@@ -1,14 +1,23 @@
+body {
+	background-color: hsla(61, 28%, 23%, 0.25);
+}
+input {
+	background-color: hsla(61, 28%, 23%, 0.15);
+}
 ul {
 	list-style: none;
 	padding: 0 0 0 0;
-	border: solid 3px black;
+	border: solid 3px hsla(54, 6%, 14%, 0.67);
 	border-radius: 5px;
+	box-shadow: -7px -7px hsla(61, 28%, 23%, 0.08);
+	background-color: hsla(23, 0%, 51%, 0.44);
 	display: inline-block;
 	margin-right: 10px;
 	width: 150px;
 }
 
 li {
+	color: hsla(54, 6%, 14%, 0.78);
 	margin: none;
 	text-align: center;
 }
@@ -23,12 +32,9 @@ li:nth-child(1) {
 li:nth-child(2) {
 	font-size: 3em;
 	font-weight: bolder;
+	text-shadow: -3px -3px hsla(61, 28%, 23%, 0.31);
 }
 
 li:nth-child(3){
 	font-style: italic;
-}
-
-li:nth-child(4){
-	
 }
