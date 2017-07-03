@@ -15,3 +15,9 @@ to myself, and a reference for how far I've come.
 I decided, after working on the project quite a bit, that it deserved a repo on my account.
 I hope that if you're looking at this you enjoy my little application.  Hopefully you don't find
 my coding/commenting practices too horrendous.
+
+## To Do:
+ - Create new branch master, and relegate old code to the cold depths of unseen hell.
+ - Modularize the codebase, and add webpack.
+ - Add React and create a cleaner UI.
+ -Create a project page and link to github page.
